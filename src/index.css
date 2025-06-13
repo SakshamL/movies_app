@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+html,
+body {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 11, 11, 1) 0%,
+    rgba(22, 35, 51, 1) 100%,
+    rgba(237, 221, 83, 1) 72%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+a {
+  text-decoration: none;
+}
+
+.search-results {
+  @apply flex visible bg-blue-700 w-full h-[200px] gap-5 rounded-[10px] transition-all duration-200 ease-in-out flex-wrap overflow-x-hidden;
+}
+
+.navbar-menu-items {
+  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#1b1b1b] transition duration-300;
+}
+
+.responsive-navbar {
+  @apply max-lg:flex max-lg:text-2xl max-lg:justify-center;
+}
+
+@layer components {
+  .title-bg-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 11, 11, 1) 0%,
+      rgba(22, 35, 51, 1) 100%,
+      rgba(237, 221, 83, 1) 72%
+    );
+  }
+
+  .searchBar-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 11, 11, 1) 0%,
+      rgb(33, 40, 71) 43%
+    );
+  }
+
+  .mask1 {
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(black, transparent);
+  }
+}
