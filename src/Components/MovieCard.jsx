@@ -3,23 +3,28 @@ import { Link } from "react-router-dom";
 
 function MovieCard(props) {
   return (
-    <div className="w-full h-full relative">
-      <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0"></div>
-      <img
-        src={props.poster_path}
-        alt={props.title}
-        className="w-full h-full rounded-[12px] shadow-[0px_4px_5px_0px_rgba(0,_0,_0,_0.25)] "
-      />
-      <p className="text-white absolute left-[20px] bottom-[30px] text-[150%] font-bold font-inter">
-        {props.title}
-      </p>
-      <p className="text-white absolute left-[20px] bottom-[5px] text-[120%] font-inria-sans">
-        2025
-      </p>
-      <p className="text-white absolute right-[20px] bottom-[5px] text-[120%] font-inria-sans">
-        Rating
-      </p>
-    </div>
+    <Link
+      to={`/movie/${props.id}`}
+      className="outline-[5px] outline-transparent rounded-[10px] focus:outline-[5px] focus:outline-[#bdbdbde9] focus:rounded focus:scale-[1.1] transition duration-200 hover:scale-[1.1]"
+    >
+      <div className="w-full h-full relative">
+        <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0"></div>
+        <img
+          src={props.poster_path}
+          alt={props.title}
+          className="w-full h-full rounded-[12px] shadow-[0px_4px_5px_0px_rgba(0,_0,_0,_0.25)] "
+        />
+        <p className="text-white absolute left-[10px] bottom-[25px] text-[90%] font-bold font-inter">
+          {props.title}
+        </p>
+        <p className="text-white absolute left-[10px] bottom-[5px] text-[90%] font-inria-sans">
+          2025
+        </p>
+        <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans">
+          Rating
+        </p>
+      </div>
+    </Link>
   );
 
   // return (
