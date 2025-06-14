@@ -43,9 +43,9 @@ function MoviesList() {
       <h2 className="text-white font-bold text-2xl ml-20 mt-10">
         Trending Movies
       </h2>
-      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
-        {movies.slice(0, 14).map((movie) => (
-          <div className="w-[12%] h-full">
+      <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
+        {movies.slice(0, 12).map((movie) => (
+          <div className="w-[200px] h-[300px]">
             <MovieCard
               key={movie.id}
               id={movie.id}
@@ -58,8 +58,7 @@ function MoviesList() {
             />
           </div>
         ))}
-      </div> */}
-      ,
+      </div>
     </>
   );
 }
