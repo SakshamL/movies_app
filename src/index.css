@@ -3,11 +3,16 @@
 
 html,
 body {
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(15, 11, 11, 1) 0%,
     rgba(22, 35, 51, 1) 100%,
     rgba(237, 221, 83, 1) 72%
+  ); */
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 44, 1) 0%,
+    rgba(16, 15, 15, 1) 100%
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -22,7 +27,7 @@ a {
 }
 
 .navbar-menu-items {
-  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#1b1b1b] transition duration-300;
+  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#686d98] transition duration-300;
 }
 
 .responsive-navbar {

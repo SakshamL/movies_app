@@ -27,7 +27,7 @@ function TvList() {
       <h2 className="text-white font-bold text-2xl ml-20 mt-10">
         Trending TV Shows
       </h2>
-      <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
+      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
         {tv.slice(0, 14).map((tv) => (
           <TVCard
             key={tv.id}
@@ -40,7 +40,7 @@ function TvList() {
             }
           />
         ))}
-      </div>
+      </div> */}
       ,
     </>
   );

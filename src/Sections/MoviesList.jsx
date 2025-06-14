@@ -43,7 +43,7 @@ function MoviesList() {
       <h2 className="text-white font-bold text-2xl ml-20 mt-10">
         Trending Movies
       </h2>
-      <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
+      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
         {movies.slice(0, 14).map((movie) => (
           <div className="w-[12%] h-full">
             <MovieCard
@@ -58,7 +58,7 @@ function MoviesList() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
       ,
     </>
   );
