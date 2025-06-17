@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 function Navbar() {
@@ -24,49 +24,49 @@ function Navbar() {
       >
         {!clicked ? <AiOutlineMenu /> : <AiOutlineClose />}
       </div>
-      <Link to="/" className="w-[15%] max-sm:w-[70%] cursor-pointer">
+      <NavLink to="/" className="w-[15%] max-sm:w-[70%] cursor-pointer">
         <img src="/logo.png" alt="logo" />
-      </Link>
+      </NavLink>
       <div>
         <ul
           id="navbar"
           className="max-lg:hidden flex text-white  mr-30 max-lg:flex-col max-lg:absolute max-lg:left-0 max-lg:top-0 max-lg:w-full max-lg:h-full max-lg:items-center max-lg:bg-[#1f2138] max-lg:z-10 max-lg:pt-20;"
         >
           <li className="navbar-menu-items">
-            <Link
+            <NavLink
               to="/"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20"
             >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li className="navbar-menu-items">
-            <Link
+            <NavLink
               to="/movies"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20"
             >
               Movies
-            </Link>
+            </NavLink>
           </li>
           <li className="navbar-menu-items">
-            <Link
+            <NavLink
               to="/tv"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20"
             >
               TV Shows
-            </Link>
+            </NavLink>
           </li>
           <li className="navbar-menu-items">
-            <Link
+            <NavLink
               to="/genres"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20"
             >
               Genres
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

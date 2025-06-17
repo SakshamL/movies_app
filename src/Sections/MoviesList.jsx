@@ -44,8 +44,8 @@ function MoviesList() {
         Trending Movies
       </h2>
       <div className="flex flex-wrap gap-5 mt-10 mb-10 justify-center">
-        {movies.slice(0, 20).map((movie) => (
-          <div className="w-[174px] h-[250px] ">
+        {movies.slice(0, 14).map((movie) => (
+          <div className="w-[174px] h-[250px] hover:scale-[1.1] transition duration-100">
             <MovieCard
               key={movie.id}
               id={movie.id}
@@ -55,6 +55,8 @@ function MoviesList() {
                   ? `no-poster.jpg`
                   : IMGPATH + movie.poster_path
               }
+              release_date={movie.release_date}
+              vote={movie.vote_average}
             />
           </div>
         ))}

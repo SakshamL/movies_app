@@ -1,14 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function MovieCard(props) {
   return (
-    <Link
-      to={`/movie/${props.id}`}
-      className="outline-[5px] outline-transparent rounded-[10px] focus:outline-[5px] focus:outline-[#bdbdbde9] focus:rounded focus:scale-[1.1] transition duration-200 hover:scale-[1.1]"
-    >
+    <NavLink to={`/movie/${props.id}`}>
       <div className="w-full h-full relative">
-        <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0"></div>
+        <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0 "></div>
         <img
           src={props.poster_path}
           alt={props.title}
@@ -18,13 +15,14 @@ function MovieCard(props) {
           {props.title}
         </p>
         <p className="text-white absolute left-[10px] bottom-[5px] text-[90%] font-inria-sans">
-          2025
+          {props.release_date}
         </p>
-        <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans">
-          Rating
+        <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
+          {props.vote.toFixed(2)}{" "}
+          <img src="/star.png" alt="star" className="w-[15px] h-full" />
         </p>
       </div>
-    </Link>
+    </NavLink>
   );
 
   // return (
