@@ -40,12 +40,13 @@ function MoviesList() {
         </button>
       </div> */}
       {/* ---------------------------------------------------------------------------------- */}
-      <h2 className="text-white font-bold text-2xl ml-20 mt-10">
-        Trending Movies
-      </h2>
-      <div className="flex flex-wrap gap-5 mt-10 mb-10 justify-center">
+      <h2 className="text-white font-bold text-2xl">Trending Movies</h2>
+      <div className="flex flex-wrap gap-4 mt-10 mb-10  ">
         {movies.slice(0, 14).map((movie) => (
-          <div className="w-[174px] h-[250px] hover:scale-[1.1] transition duration-100">
+          <div
+            key={movie.id}
+            className="w-[174px] h-[250px] hover:scale-[1.1] transition duration-100"
+          >
             <MovieCard
               key={movie.id}
               id={movie.id}

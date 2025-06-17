@@ -1,8 +1,9 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "../Components/SearchBar";
 import MoviesList from "../Sections/MoviesList";
 import TvList from "../Sections/TvList";
-import MovieCard from "../Components/MovieCard";
+import GetFeaturedMovies from "../Services/getFeaturedMovies";
 
 function HomePage() {
   return (
@@ -11,7 +12,8 @@ function HomePage() {
         <SearchBar />
       </div>
 
-      <div className="">
+      <div className="mt-10 ml-20 mr-20">
+        <GetFeaturedMovies />
         <MoviesList />
         <TvList />
       </div>

@@ -18,8 +18,12 @@ function MovieCard(props) {
           {props.release_date}
         </p>
         <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
-          {props.vote.toFixed(2)}{" "}
-          <img src="/star.png" alt="star" className="w-[15px] h-full" />
+          {props.vote ? (
+            <>
+              {props.vote.toFixed(2)}
+              <img src="/star.png" alt="star" className="w-[15px] h-full" />
+            </>
+          ) : null}
         </p>
       </div>
     </NavLink>
