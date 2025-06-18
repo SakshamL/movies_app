@@ -32,6 +32,7 @@ const GetFeaturedMovies = () => {
               title={movie.title}
               backdrop={IMGPATH + movie.backdrop_path}
               poster={IMGPATH + movie.poster_path}
+              vote={movie.vote_average}
             />
             ;
           </div>

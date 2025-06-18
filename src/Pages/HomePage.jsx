@@ -13,7 +13,9 @@ function HomePage() {
       </div>
 
       <div className="mt-10 ml-20 mr-20">
+        <h2 className="text-white text-2xl font-bold mb-5">Featured Movies</h2>
         <GetFeaturedMovies />
+
         <MoviesList />
         <TvList />
       </div>

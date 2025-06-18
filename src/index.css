@@ -22,6 +22,10 @@ a {
   text-decoration: none;
 }
 
+.active {
+  background-color: #686d98;
+}
+
 .search-results {
   @apply flex visible bg-blue-700 w-full h-[200px] gap-5 rounded-[10px] transition-all duration-200 ease-in-out flex-wrap overflow-x-hidden;
 }
