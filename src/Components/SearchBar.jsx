@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { search_api } from "../Services/api";
-import MovieCard from "./MovieCard";
+import SearchCard from "./SearchCard";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -40,26 +40,32 @@ function SearchBar() {
       />
       <div
         id="searchResults"
-        className="text-2xl text-[grey] flex justify-center items-center searchBar-gradient h-0 invisible "
+        className="text-2xl text-[grey] flex justify-center items-center searchBar-gradient h-0 invisible  "
       >
-        {searchedResults.map((result) => {
-          return (
-            <>
-              <div className="h-[150px] w-30 bg-blue-600 relative">
-                <MovieCard
-                  key={result.id}
-                  id={result.id}
-                  title={result.title}
-                  poster_path={
-                    result.poster_path === null
-                      ? `no-poster.jpg`
-                      : IMGPATH + result.poster_path
-                  }
-                />
-              </div>
-            </>
-          );
-        })}
+        {" "}
+        {searchedResults.length > 0 ? (
+          searchedResults.map((result) => {
+            return (
+              <>
+                <div className="h-[200px] w-[150px] relative">
+                  <SearchCard
+                    key={result.id}
+                    id={result.id}
+                    title={result.title}
+                    poster_path={
+                      result.poster_path === null
+                        ? `no-poster.jpg`
+                        : IMGPATH + result.poster_path
+                    }
+                    vote={result.vote_average}
+                  />
+                </div>
+              </>
+            );
+          })
+        ) : (
+          <p>No Result Found..!!</p>
+        )}
       </div>
     </div>
   );

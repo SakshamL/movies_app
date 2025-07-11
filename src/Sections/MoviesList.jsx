@@ -45,7 +45,7 @@ function MoviesList() {
         {movies.slice(0, 14).map((movie) => (
           <div
             key={movie.id}
-            className="w-[174px] h-[250px] hover:scale-[1.1] transition duration-100"
+            className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
           >
             <MovieCard
               key={movie.id}
