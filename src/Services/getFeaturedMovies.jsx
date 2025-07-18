@@ -22,7 +22,7 @@ const GetFeaturedMovies = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid grid-cols-2 gap-4 gap-y-0 md:grid-cols-3 duration-200 ease-in-out">
       {topMovies.slice(0, 3).map((movie) => {
         return (
           <div key={movie.id} className="w-full h-[80%] relative">

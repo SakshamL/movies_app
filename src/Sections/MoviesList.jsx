@@ -41,12 +41,17 @@ function MoviesList() {
       </div> */}
       {/* ---------------------------------------------------------------------------------- */}
       <h2 className="text-white font-bold text-2xl">Trending Movies</h2>
-      <div className="flex flex-wrap gap-4 mt-10 mb-10  ">
+      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
+      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-6 ">
         {movies.slice(0, 12).map((movie) => (
           <div
             key={movie.id}
-            className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
+            className="w-full h-full hover:scale-[1.1] transition duration-150"
           >
+            {/* <div
+            key={movie.id}
+            className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
+          > */}
             <MovieCard
               key={movie.id}
               id={movie.id}

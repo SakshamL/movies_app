@@ -31,6 +31,10 @@ a {
   bottom: 0;
 }
 
+.featuredcards:hover img {
+  filter: brightness(0.5);
+}
+
 .search-results {
   @apply flex visible  w-full h-[300px] gap-5 rounded-[10px] transition-all duration-200 ease-in-out flex-wrap overflow-x-hidden pt-10 pb-10;
 }

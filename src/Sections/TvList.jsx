@@ -24,12 +24,12 @@ function TvList() {
 
   return (
     <>
-      <h2 className="text-white font-bold text-2xl">Trending TV Shows</h2>
-      <div className="flex flex-wrap gap-4 mt-10 mb-10  ">
+      <h2 className="text-white font-bold text-2xl mt-30">Trending TV Shows</h2>
+      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-6 ">
         {tv.slice(0, 14).map((tv) => (
           <div
             key={tv.id}
-            className="w-[15%] h-[35vh]  hover:scale-[1.1] transition duration-100"
+            className="w-full h-[full  hover:scale-[1.1] transition duration-150"
           >
             <TVCard
               key={tv.id}
