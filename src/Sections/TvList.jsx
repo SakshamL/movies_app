@@ -24,21 +24,28 @@ function TvList() {
 
   return (
     <>
-      <h2 className="text-white font-bold text-2xl mt-10">Trending TV Shows</h2>
-      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10 justify-center">
+      <h2 className="text-white font-bold text-2xl">Trending TV Shows</h2>
+      <div className="flex flex-wrap gap-4 mt-10 mb-10  ">
         {tv.slice(0, 14).map((tv) => (
-          <TVCard
+          <div
             key={tv.id}
-            id={tv.id}
-            title={tv.name}
-            poster_path={
-              tv.poster_path === null
-                ? `no-poster.jpg`
-                : IMGPATH + tv.poster_path
-            }
-          />
+            className="w-[15%] h-[35vh]  hover:scale-[1.1] transition duration-100"
+          >
+            <TVCard
+              key={tv.id}
+              id={tv.id}
+              name={tv.name}
+              poster_path={
+                tv.poster_path === null
+                  ? `no-poster.jpg`
+                  : IMGPATH + tv.poster_path
+              }
+              first_air_date={tv.first_air_date}
+              vote={tv.vote_average}
+            />
+          </div>
         ))}
-      </div> */}
+      </div>
       ,
     </>
   );

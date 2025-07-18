@@ -42,7 +42,7 @@ function MoviesList() {
       {/* ---------------------------------------------------------------------------------- */}
       <h2 className="text-white font-bold text-2xl">Trending Movies</h2>
       <div className="flex flex-wrap gap-4 mt-10 mb-10  ">
-        {movies.slice(0, 14).map((movie) => (
+        {movies.slice(0, 12).map((movie) => (
           <div
             key={movie.id}
             className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"

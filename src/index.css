@@ -23,7 +23,12 @@ a {
 }
 
 .active {
-  background-color: #686d98;
+  background-color: #382d52;
+  /* background-color: #686d98; */
+}
+
+.featuredcards:hover div {
+  bottom: 0;
 }
 
 .search-results {
@@ -31,11 +36,12 @@ a {
 }
 
 .navbar-menu-items {
-  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#686d98] transition duration-300;
+  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#382d52] transition duration-300;
 }
 
 .responsive-navbar {
-  @apply max-lg:flex max-lg:text-2xl max-lg:justify-center;
+  /* @apply max-lg:flex max-lg:text-2xl max-lg:justify-center; */
+  @apply max-lg:absolute max-lg:top-0 max-lg:left-0 max-lg:flex max-lg:gap-8 max-lg:w-[100vw] max-lg:bg-[#10121b] max-lg:h-[100vh] max-lg:items-center max-lg:justify-center max-lg:z-10;
 }
 
 @layer components {

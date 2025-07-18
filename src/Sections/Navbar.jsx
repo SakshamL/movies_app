@@ -17,21 +17,22 @@ function Navbar() {
   }
 
   return (
-    <div className="flex flex-row place-content-between p-5 items-center ml-20 mr-20 max-sm:justify-center">
+    <div className="flex items-center mt-5 lg:justify-between">
+      <Link to="/" className="w-[200px] ml-[3%] md:w-[250px]  cursor-pointer">
+        <img src="/logo.png" alt="logo" />
+      </Link>
       <div
-        className="text-white lg:hidden absolute top-[5%] right-[5%] text-2xl cursor-pointer z-20"
+        className="text-white lg:hidden text-2xl cursor-pointer z-20 absolute right-5 top-10"
         onClick={handleResNavbar}
       >
         {!clicked ? <AiOutlineMenu /> : <AiOutlineClose />}
       </div>
-      <Link to="/" className="w-[15%] max-sm:w-[70%] cursor-pointer">
-        <img src="/logo.png" alt="logo" />
-      </Link>
       <div>
-        <ul
+        {/* <ul
           id="navbar"
-          className="max-lg:hidden flex text-white  mr-30 max-lg:flex-col max-lg:absolute max-lg:left-0 max-lg:top-0 max-lg:w-full max-lg:h-full max-lg:items-center max-lg:bg-[#1f2138] max-lg:z-10 max-lg:pt-20;"
-        >
+          className="max-md:hidden flex text-white  mr-30 max-md:flex-col max-md:absolute max-md:left-0 max-md:top-0 max-md:w-full max-md:h-full max-md:items-center max-md:bg-[#1f2138] max-md:z-10 max-md:pt-20;"
+        > */}
+        <ul id="navbar" className="hidden text-white max-lg:flex-col lg:flex ">
           <li className="">
             <NavLink
               to="/"

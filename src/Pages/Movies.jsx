@@ -28,10 +28,8 @@ function Movies() {
   function Movie_details() {
     return (
       <>
-        <div className="relative flex flex-col justify-center w-[80%]">
-          <div className="w-full ">
-            <SearchBar />
-          </div>
+        <div className=" flex flex-col justify-center w-full ml-[4%] mr-[4%]">
+          <SearchBar />
           <div className="w-full h-[60dvh] flex justify-center mt-10 ">
             <img
               src={IMGPATH + movieDetails.backdrop_path}

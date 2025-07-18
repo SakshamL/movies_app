@@ -22,10 +22,10 @@ const GetFeaturedMovies = () => {
   };
 
   return (
-    <div className="flex gap-10 mb-10 flex-wrap">
+    <div className="grid grid-cols-3 gap-6">
       {topMovies.slice(0, 3).map((movie) => {
         return (
-          <div key={movie.id} className="w-[30%] h-[20%] relative">
+          <div key={movie.id} className="w-full h-[80%] relative">
             <FeaturedMoviesCards
               key={movie.id}
               id={movie.id}
