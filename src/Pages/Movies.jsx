@@ -134,7 +134,7 @@ function Movies() {
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:mb-50">
                   {cast.map((casting) =>
                     casting.profile_path !== null ? (
-                      <div className="overflow-hidden">
+                      <div className=" hover:scale-[1.1] duration-100">
                         <CastCard
                           key={casting.id}
                           image={IMGPATH + casting.profile_path}
@@ -145,22 +145,6 @@ function Movies() {
                     ) : null
                   )}
                 </div>
-
-                {/* <div className=" w-[150px] h-[200px] border-[1px] border-[#6f9fe656] rounded-[14px] mb-20">
-                  <CastCard />
-                </div> */}
-
-                {/* <h2 className="text-[20px] mb-5 mt-5 font-semibold">
-                Release Year:{" "}
-                <span className="font-light">{movieDetails.release_date}</span>
-              </h2> */}
-                {/* <h2 className="text-[20px] font-semibold w-200">
-                Overview:
-                <span className="font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-                  "{movieDetails.overview}"
-                </span>
-              </h2> */}
-                {/* <h2>{movieDetails.genres[0]}</h2> */}
               </div>
             </div>
           </div>
