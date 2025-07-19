@@ -40,7 +40,7 @@ function SearchBar() {
       />
       <div
         id="searchResults"
-        className="text-2xl text-[grey] flex justify-center items-center searchBar-gradient h-0 invisible  "
+        className="text-2xl text-[grey] flex justify-center items-center searchBar-gradient h-0 invisible "
       >
         {" "}
         {searchedResults.length > 0 ? (
