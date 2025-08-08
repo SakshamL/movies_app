@@ -58,7 +58,7 @@ function MoviesList() {
               title={movie.title}
               poster_path={
                 movie.poster_path === null
-                  ? `no-poster.jpg`
+                  ? `/no-poster.jpg`
                   : IMGPATH + movie.poster_path
               }
               release_date={movie.release_date}

@@ -10,6 +10,10 @@ export const movie_details_1 = `https://api.themoviedb.org/3/movie/`;
 
 export const movie_details_2 = `?api_key=04c35731a5ee918f014970082a0088b1`;
 
+export const tv_details_1 = `https://api.themoviedb.org/3/tv/`;
+
+export const tv_details_2 = `?api_key=04c35731a5ee918f014970082a0088b1`;
+
 export const top_rated_movies_1 = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&include_adult=false&include_video=false&language=en-US&page=`;
 
 export const top_rated_movies_2 = `&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&with_original_language=hi`;
@@ -22,6 +26,9 @@ export const search_api = [
 
 export const cast_api_1 = `https://api.themoviedb.org/3/movie/`;
 export const cast_api_2 = `/credits?api_key=04c35731a5ee918f014970082a0088b1`;
+
+export const castTv_api_1 = `https://api.themoviedb.org/3/tv/`;
+export const castTv_api_2 = `/credits?api_key=04c35731a5ee918f014970082a0088b1&language=en-US`;
 
 // const Next_btn = () => {
 //   const [prevpage, setprevpage] = useState(1);

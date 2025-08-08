@@ -8,7 +8,7 @@ const VideoPlayer = () => {
       <iframe
         width="100%"
         height="100%"
-        src={`https://vidsrc.xyz/embed/movie?tmdb=${id}`}
+        src={`https://vidsrc.in/embed/movie?tmdb=${id}`}
         allowfullscreen="true"
       ></iframe>
     </div>

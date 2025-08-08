@@ -87,7 +87,7 @@ function Movies() {
                     />
                   </div>
                 </div>
-                <div className="flex gap-3 krub-regular text-[16px] mt-5">
+                <div className="flex gap-3 krub-regular text-[16px] mt-5 ">
                   {movieDetails.genres
                     ? movieDetails.genres.map((genre) => {
                         return (
@@ -105,7 +105,7 @@ function Movies() {
                   <Link to={`/movie/${movieDetails.id}/watch`}>
                     {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
 
-                    <h2 className="bg-[#7C02FF] w-fit rounded-[14px] cursor-pointer px-4 py-2 shadow-[0px_0px_11px_0px_rgba(124,_2,_255,_1)] uppercase font-semibold mt-5">
+                    <h2 className="bg-[#7C02FF] w-fit rounded-[14px] cursor-pointer px-4 py-2 shadow-[0px_0px_11px_0px_rgba(124,_2,_255,_1)] uppercase font-semibold mt-5 hover:scale-[1.1] duration-100">
                       PLAY NOW
                     </h2>
                   </Link>
@@ -131,19 +131,26 @@ function Movies() {
                   Cast
                 </h2>
 
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:mb-50">
-                  {cast.map((casting) =>
-                    casting.profile_path !== null ? (
-                      <div className=" hover:scale-[1.1] duration-100">
+                <div className="h-80 w-full overflow-y-scroll mb-50 p-5 scrollhide">
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+                    {cast.map((casting) => (
+                      <div
+                        key={casting.id}
+                        className=" hover:scale-[1.1] duration-100"
+                      >
                         <CastCard
                           key={casting.id}
-                          image={IMGPATH + casting.profile_path}
+                          image={
+                            casting.profile_path === null
+                              ? `/no-poster.jpg`
+                              : IMGPATH + casting.profile_path
+                          }
                           name={casting.name}
                           char={casting.character}
                         />
                       </div>
-                    ) : null
-                  )}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
