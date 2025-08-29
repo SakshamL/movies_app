@@ -17,10 +17,16 @@ const VideoPlayer = () => {
         src={`https://player.autoembed.cc/embed/movie/${id}`}
         allowfullscreen="true"
       ></iframe> */}
-      <iframe
+      {/* <iframe
         width="100%"
         height="100%"
         src={`https://player.vidplus.to/embed/movie/${id}?autoplay=true&autonext=true&nextbutton=true&poster=true&title=true&watchparty=false&chromecast=false&servericon=true&icons=vid&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF`}
+        allowfullscreen="true"
+      ></iframe> */}
+      <iframe
+        width="100%"
+        height="100%"
+        src={`https://vidfast.pro/movie/${id}?autoPlay=true&server=Bollywood`}
         allowfullscreen="true"
       ></iframe>
     </div>
