@@ -13,7 +13,7 @@ function HomePage() {
       </div>
 
       <div className="mt-10 ml-[5%] mr-[5%]">
-        <h2 className="text-white text-2xl font-bold mb-5">Featured Movies</h2>
+        {/* <h2 className="text-white text-2xl font-bold mb-5">Featured Movies</h2> */}
         <GetFeaturedMovies />
 
         <MoviesList />
