@@ -41,12 +41,12 @@ function Movies() {
     return (
       <>
         <div className="text-white flex flex-col w-full ml-[4%] mr-[4%]">
-          <SearchBar />
+          {/* <SearchBar /> */}
           <div className="relative mt-10">
             <img
               src={IMGPATH + movieDetails.backdrop_path}
               alt=""
-              className="md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
+              className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
             />
             <div className="absolute top-[15%] left-20 brightness-[1] md:flex md:items-start">
               <img

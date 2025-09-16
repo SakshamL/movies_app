@@ -10,6 +10,7 @@ const VideoPlayer = () => {
         height="100%"
         src={`https://vidsrc.in/embed/movie?tmdb=${id}`}
         allowfullscreen="true"
+        sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
       ></iframe> */}
       {/* <iframe
         width="100%"
