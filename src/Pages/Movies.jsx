@@ -96,7 +96,7 @@ function Movies() {
                       className="w-[20px] h-full mt-[-3px]"
                     />
                   </div>
-                  <h2 className="krub-regular">
+                  <h2 className="krub-regular ">
                     {movieDetails.release_date
                       ? movieDetails.release_date.substring(0, 4)
                       : null}
@@ -149,38 +149,51 @@ function Movies() {
                       })
                     : ""}
                 </div>
+                <div className="flex gap-10">
+                  <div className="flex-6">
+                    <h2 className="md:text-2xl md:font-semibold md:mb-4 md:mt-10">
+                      Synopsis
+                    </h2>
+                    <h2 className="text-[#ffffff7c] text-[18px] md:font-normal md:mb-4 md:mt-5">
+                      {movieDetails.overview}
+                    </h2>
+                    <div className="flex items-center justify-between md:mb-5 md:mt-20 ">
+                      <h2 className="md:text-2xl md:font-semibold ">Cast</h2>
+                      <Link>
+                        <h3 className="text-[#3668e8] text-[18px] md:font-bold">
+                          See All
+                        </h3>
+                      </Link>
+                    </div>
 
-                <h2 className="md:text-2xl md:font-semibold md:mb-4 md:mt-10">
-                  Story Line
-                </h2>
-
-                <h2 className="text-[18px] md:font-normal md:mb-4 md:mt-5">
-                  {movieDetails.overview}
-                </h2>
-
-                <h2 className="md:text-2xl md:font-semibold md:mb-10 md:mt-20">
-                  Cast
-                </h2>
-
-                <div className="h-80 w-full overflow-y-scroll mb-50 p-5 scrollhide">
-                  <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-                    {cast.map((casting) => (
-                      <div
-                        key={casting.id}
-                        className=" hover:scale-[1.1] duration-100"
-                      >
-                        <CastCard
-                          key={casting.id}
-                          image={
-                            casting.profile_path === null
-                              ? `/no-poster.jpg`
-                              : IMGPATH + casting.profile_path
-                          }
-                          name={casting.name}
-                          char={casting.character}
-                        />
+                    <div className="mb-20 scrollhide">
+                      <div className="grid md:grid-cols-6  gap-4">
+                        {cast.slice(0, 12).map((casting) => (
+                          <div
+                            key={casting.id}
+                            className=" hover:scale-[1.1] duration-100"
+                          >
+                            <CastCard
+                              key={casting.id}
+                              image={
+                                casting.profile_path === null
+                                  ? `/no-poster.jpg`
+                                  : IMGPATH + casting.profile_path
+                              }
+                              name={casting.name}
+                              char={casting.character}
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+                  </div>
+                  <div className="flex-2 mt-6">
+                    <img
+                      src={IMGPATH + movieDetails.poster_path}
+                      alt={movieDetails.title}
+                      className="w-50 md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
+                    />
                   </div>
                 </div>
               </div>
