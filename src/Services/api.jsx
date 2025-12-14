@@ -30,6 +30,9 @@ export const cast_api_2 = `/credits?api_key=04c35731a5ee918f014970082a0088b1`;
 export const castTv_api_1 = `https://api.themoviedb.org/3/tv/`;
 export const castTv_api_2 = `/credits?api_key=04c35731a5ee918f014970082a0088b1&language=en-US`;
 
+export const movie_cert_1 = `https://api.themoviedb.org/3/movie/`;
+export const movie_cert_2 = `/release_dates?api_key=04c35731a5ee918f014970082a0088b1`;
+
 // const Next_btn = () => {
 //   const [prevpage, setprevpage] = useState(1);
 //   const [newPage, setNewPage] = useState(prevpage);
