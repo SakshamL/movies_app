@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { movie_details_1, movie_details_2 } from "../Services/api";
 import { cast_api_1, cast_api_2 } from "../Services/api";
 import { movie_cert_1, movie_cert_2 } from "../Services/api";
+import { movie_trailer_1, movie_trailer_2 } from "../Services/api";
 import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
@@ -15,17 +16,20 @@ function Movies() {
   const [movieDetails, setMovieDetails] = useState([]);
   const [cast, setCast] = useState([]);
   const [movieCert, setMovieCert] = useState("");
+  const [trailer, setTrailer] = useState([]);
 
   useEffect(() => {
     getMovie_details();
     getcast_details();
     get_cert();
+    get_trailer();
   }, []);
 
   useEffect(() => {
     getMovie_details();
     getcast_details();
     get_cert;
+    get_trailer();
   }, [id]);
 
   const getMovie_details = async () => {
@@ -50,6 +54,14 @@ function Movies() {
         // console.log(element.release_dates[0].certification);
       }
     });
+  };
+
+  const get_trailer = async () => {
+    const response = await fetch(movie_trailer_1 + id + movie_trailer_2);
+    const responseJSON = await response.json();
+    setTrailer(responseJSON.results[0].key);
+    // console.log(responseJSON.results[0].key);
+    // console.log(movie_trailer_1 + id + movie_trailer_2);
   };
 
   function Movie_details() {
@@ -108,15 +120,18 @@ function Movies() {
                   <Link to={`/movie/${movieDetails.id}/watch`}>
                     {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
 
-                    <h2 className="bg-[#7C02FF] w-fit rounded-[14px] cursor-pointer px-4 py-2 shadow-[0px_0px_11px_0px_rgba(124,_2,_255,_1)] uppercase font-semibold mt-5 hover:scale-[1.1] duration-100">
+                    <h2 className="bg-[#2046a6] w-fit rounded-[10px] cursor-pointer px-7 py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold mt-5 hover:scale-[1.1] duration-100">
                       PLAY NOW
                     </h2>
                   </Link>
 
-                  <Link to={`/movie/${movieDetails.id}/watch`}>
+                  <Link to={`https://www.youtube.com/watch?v=${trailer}`}>
                     {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
 
-                    <h2 className="bg-[#CD0003] w-fit rounded-[14px] cursor-pointer px-4 py-2 shadow-[0px_0px_5px_0px_rgba(205,_0,_3,_1)]  font-normal mt-5">
+                    <h2
+                      className="bg-[#cd0003bc] w-fit rounded-[10px] cursor-pointer px-5 py-3 shadow-[0px_0px_5px_0px_rgba(205,_0,_3,_1)] font-normal  mt-5 uppercase"
+                      onClick={() => {}}
+                    >
                       Trailer
                     </h2>
                   </Link>
