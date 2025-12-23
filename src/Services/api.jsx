@@ -2,7 +2,9 @@
 
 export const movies_api_1 = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&page=`;
 
-export const movies_api_2 = `&&primary_release_year=2025&with_original_language=hi`;
+export const movies_api_2 = `&with_original_language=hi`;
+
+// export const movies_api_2 = `&&primary_release_year=2025&with_original_language=hi`;
 
 export const tv_shows = `https://api.themoviedb.org/3/discover/tv?include_adult=false&api_key=04c35731a5ee918f014970082a0088b1&include_null_first_air_dates=false&&page=1&sort_by=popularity.desc&region=IN&with_original_language=hi`;
 
@@ -35,6 +37,10 @@ export const movie_cert_2 = `/release_dates?api_key=04c35731a5ee918f014970082a00
 
 export const movie_trailer_1 = `https://api.themoviedb.org/3/movie/`;
 export const movie_trailer_2 = `/videos?language=en-US&api_key=04c35731a5ee918f014970082a0088b1`;
+
+
+
+export const movie_genres = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=04c35731a5ee918f014970082a0088b1`
 
 // https://api.themoviedb.org/3/movie/37822/videos?language=en-US&api_key=04c35731a5ee918f014970082a0088b1
 

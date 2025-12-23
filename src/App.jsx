@@ -31,7 +31,7 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/tv" element={<TVShows />} />
           <Route path="/genres" element={<Genres />} />
-          <Route path="/movie/:id" element={<Movies />} />
+          <Route path="/movie/:id/:title" element={<Movies />} />
           <Route path="/tv/:id" element={<TVShows />} />
           <Route path="/movie/:id/watch" element={<VideoPlayer />} />
         </Routes>

@@ -16,6 +16,7 @@ body {
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
+  padding: 0% 3%;
 }
 
 a {

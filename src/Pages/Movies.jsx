@@ -30,40 +30,48 @@ function Movies() {
   useEffect(() => {
     getMovie_details();
     getcast_details();
-    get_cert;
+    get_cert();
     get_trailer();
   }, [id]);
 
   const getMovie_details = async () => {
-    const response = await fetch(movie_details_1 + id + movie_details_2);
-    const responseJSON = await response.json();
-    setMovieDetails(responseJSON);
+    if (id) {
+      const response = await fetch(movie_details_1 + id + movie_details_2);
+      const responseJSON = await response.json();
+      setMovieDetails(responseJSON);
+    }
   };
 
   const getcast_details = async () => {
-    const response = await fetch(cast_api_1 + id + cast_api_2);
-    const responseJSON = await response.json();
-    setCast(responseJSON.cast);
-    // console.log(responseJSON.cast);
+    if (id) {
+      const response = await fetch(cast_api_1 + id + cast_api_2);
+      const responseJSON = await response.json();
+      setCast(responseJSON.cast);
+      // console.log(responseJSON.cast);
+    }
   };
 
   const get_cert = async () => {
-    const response = await fetch(movie_cert_1 + id + movie_cert_2);
-    const responseJSON = await response.json();
-    responseJSON.results.forEach((element) => {
-      if (element.iso_3166_1 == "IN") {
-        setMovieCert(element.release_dates[0].certification);
-        // console.log(element.release_dates[0].certification);
-      }
-    });
+    if (id) {
+      const response = await fetch(movie_cert_1 + id + movie_cert_2);
+      const responseJSON = await response.json();
+      responseJSON.results.forEach((element) => {
+        if (element.iso_3166_1 == "IN") {
+          setMovieCert(element.release_dates[0].certification);
+          // console.log(element.release_dates[0].certification);
+        }
+      });
+    }
   };
 
   const get_trailer = async () => {
-    const response = await fetch(movie_trailer_1 + id + movie_trailer_2);
-    const responseJSON = await response.json();
-    setTrailer(responseJSON.results[0].key);
-    // console.log(responseJSON.results[0].key);
-    // console.log(movie_trailer_1 + id + movie_trailer_2);
+    if (id) {
+      const response = await fetch(movie_trailer_1 + id + movie_trailer_2);
+      const responseJSON = await response.json();
+      setTrailer(responseJSON.results[0].key);
+      // console.log(responseJSON.results[0].key);
+      // console.log(movie_trailer_1 + id + movie_trailer_2);
+    }
   };
 
   function Movie_details() {

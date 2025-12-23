@@ -8,11 +8,11 @@ import GetFeaturedMovies from "../Services/getFeaturedMovies";
 function HomePage() {
   return (
     <>
-      <div className=" text-white flex flex-col items-center mt-10 ml-[4%] mr-[4%]">
+      <div className=" text-white flex flex-col items-center mt-10">
         <SearchBar />
       </div>
 
-      <div className="mt-10 ml-[5%] mr-[5%]">
+      <div className="mt-10 ">
         {/* <h2 className="text-white text-2xl font-bold mb-5">Featured Movies</h2> */}
         <GetFeaturedMovies />
 

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function MovieCard(props) {
   return (
-    <NavLink to={`/movie/${props.id}`}>
+    <NavLink to={`/movie/${props.id}/${props.title.toLowerCase().replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")}`}>
       <div className="w-full h-full relative">
         <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0 "></div>
         <img
