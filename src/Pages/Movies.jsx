@@ -8,6 +8,8 @@ import { movie_trailer_1, movie_trailer_2 } from "../Services/api";
 import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
+import AllMoviesPage from "./AllMoviesPage";
+
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -207,7 +209,9 @@ function Movies() {
   function All_Movies_list() {
     return (
       <>
-        <h2>Here, You will the list of All Movies..!!</h2>
+        {/* <h2>Here, You will the list of All Movies..!!</h2> */}
+
+        <AllMoviesPage />
       </>
     );
   }
