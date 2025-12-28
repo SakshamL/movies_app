@@ -60,7 +60,7 @@ function Navbar() {
               TV Shows
             </NavLink>
           </li>
-          <li className="">
+          {/* <li className="">
             <NavLink
               to="/genres"
               onClick={handleResNavbar}
@@ -68,7 +68,7 @@ function Navbar() {
             >
               Genres
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

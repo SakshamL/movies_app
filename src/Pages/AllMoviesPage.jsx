@@ -87,15 +87,15 @@ function AllMoviesPage() {
           </button>
         </div> */}
         {/* ---------------------------------------------------------------------------------- */}
-        <div className="flex  ">
-          <div className="flex-2">
-            <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">Filters</h2>
-            <div className="flex flex-col text-[#ffffff6d]">
+        <div className="flex gap-3">
+          <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
+            <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">Genre Filters</h2>
+            <div className="flex flex-wrap gap-x-2 gap-y-7 text-[#ffffff6d]">
             {genres.map((gen) => (
             // <p key={gen.id}>{gen.name}</p>
-            <div key={gen.id}>
-              <input type="checkbox" id={gen.id} name={gen.name} value={gen.name} onChange={checkSelectedGenres} />
-              <label>{gen.name}</label>
+            <div key={gen.id} className="flex flex-1 relative items-center justify-center">
+              <input type="checkbox" id={gen.id} name={gen.name} value={gen.name} onChange={checkSelectedGenres} className={`peer cursor-pointer absolute rounded-lg appearance-none w-full h-10 border-3 checked:border-[#311670] checked:brightness-[1.5] border-[#ffffff65] `} />
+              <label htmlFor={gen.id} className={`px-3 py-1 cursor-pointer text-nowrap text-[14px] font-semibold peer-checked:text-[#632ae9] `}>{gen.name}</label>
             </div>
             
           ))}
