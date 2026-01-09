@@ -8,6 +8,7 @@ const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 function SearchBar() {
   const [searched, setSearched] = useState("");
   const [searchedResults, setSearchResults] = useState([]);
+  // const allowedLanguages = ["hi", "en", "pa", "te", "ta", "ml", "kn"];
 
   useEffect(() => {
     getSearchedItems();
@@ -25,6 +26,10 @@ function SearchBar() {
   const getSearchedItems = async () => {
     const response = await fetch(search_api[0] + searched + search_api[2]);
     const responseJSON = await response.json();
+    // // FILTERING HAPPENS HERE:
+    // const filteredResults = responseJSON.results.filter((movie) =>
+    //   allowedLanguages.includes(movie.original_language)
+    // );
     setSearchResults(responseJSON.results);
   };
 

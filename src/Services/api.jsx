@@ -1,8 +1,54 @@
 // import { useState } from "react";
 
-export const movies_api_1 = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&page=`;
+// 1. Calculate the date window (45 days)
+const today = new Date();
+const startDate = new Date();
+startDate.setDate(today.getDate() - 45);
+const formatDate = (date) => date.toISOString().split("T")[0];
 
-export const movies_api_2 = `&with_original_language=hi`;
+const API_KEY = "04c35731a5ee918f014970082a0088b1";
+
+// hi: Hindi, en: English, pa: Punjabi, te: Telugu, ta: Tamil, ml: Malayalam, kn: Kannada
+const languages = ["hi", "en", "pa", "te", "ta", "ml", "kn"].join("|");
+const languages2 = ["hi"].join("|");
+const languages3 = ["en"].join("|");
+const releaseTypes = "2|3|4";
+
+export const url =
+  `https://api.themoviedb.org/3/discover/movie` +
+  `?api_key=${API_KEY}` +
+  `&region=IN` +
+  `&with_release_type=${releaseTypes}` +
+  `&with_original_language=${languages2}` +
+  `&release_date.gte=${formatDate(startDate)}` +
+  `&release_date.lte=${formatDate(today)}` +
+  `&sort_by=popularity.desc`;
+
+export const url2 =
+  `https://api.themoviedb.org/3/discover/movie` +
+  `?api_key=${API_KEY}` +
+  `&region=IN` +
+  `&with_release_type=${releaseTypes}` +
+  `&with_original_language=${languages}` +
+  `&release_date.gte=${formatDate(startDate)}` +
+  `&release_date.lte=${formatDate(today)}` +
+  `&sort_by=popularity.desc`;
+
+export const url3 =
+  `https://api.themoviedb.org/3/discover/movie` +
+  `?api_key=${API_KEY}` +
+  `&region=IN` +
+  `&with_release_type=${releaseTypes}` +
+  `&with_original_language=${languages3}` +
+  `&release_date.gte=${formatDate(startDate)}` +
+  `&release_date.lte=${formatDate(today)}` +
+  `&sort_by=popularity.desc`;
+
+// export const movies_api_1 = `https://api.themoviedb.org/3/movie/now_playing?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&with_original_language=hi&page=`;
+
+// export const movies_api_2 = ``;
+
+export const movies_api = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&with_original_language=hi&primary_release_year=2025&page=`;
 
 // export const movies_api_2 = `&&primary_release_year=2025&with_original_language=hi`;
 
@@ -38,9 +84,7 @@ export const movie_cert_2 = `/release_dates?api_key=04c35731a5ee918f014970082a00
 export const movie_trailer_1 = `https://api.themoviedb.org/3/movie/`;
 export const movie_trailer_2 = `/videos?language=en-US&api_key=04c35731a5ee918f014970082a0088b1`;
 
-
-
-export const movie_genres = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=04c35731a5ee918f014970082a0088b1`
+export const movie_genres = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=04c35731a5ee918f014970082a0088b1`;
 
 // https://api.themoviedb.org/3/movie/37822/videos?language=en-US&api_key=04c35731a5ee918f014970082a0088b1
 

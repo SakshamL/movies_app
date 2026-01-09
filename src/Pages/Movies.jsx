@@ -198,7 +198,7 @@ function Movies() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex-2 mt-6">
+                  <div className="flex-2 -mt-30">
                     <img
                       src={IMGPATH + movieDetails.poster_path}
                       alt={movieDetails.title}

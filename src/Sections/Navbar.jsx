@@ -37,7 +37,7 @@ function Navbar() {
             <NavLink
               to="/"
               onClick={handleResNavbar}
-              className="max-lg:pr-20 max-lg:pl-20 mr-5 navbar-menu-items"
+              className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
               Home
             </NavLink>
@@ -46,7 +46,7 @@ function Navbar() {
             <NavLink
               to="/movies"
               onClick={handleResNavbar}
-              className="max-lg:pr-20 max-lg:pl-20 mr-5 navbar-menu-items"
+              className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
               Movies
             </NavLink>
@@ -55,7 +55,7 @@ function Navbar() {
             <NavLink
               to="/tv"
               onClick={handleResNavbar}
-              className="max-lg:pr-20 max-lg:pl-20 mr-5 navbar-menu-items"
+              className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
               TV Shows
             </NavLink>

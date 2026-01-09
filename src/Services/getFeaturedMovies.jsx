@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import FeaturedMoviesCards from "../Components/FeaturedMoviesCards";
 import { top_rated_movies_1, top_rated_movies_2 } from "./api";
+import { url2 } from "./api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -13,9 +14,14 @@ const GetFeaturedMovies = () => {
     getTopMovies();
   }, []);
 
+  useEffect(() => {
+    getTopMovies();
+  }, [url2]);
+
   const getTopMovies = async () => {
     const reponse = await fetch(
-      top_rated_movies_1 + page_no + top_rated_movies_2
+      url2
+      // top_rated_movies_1 + page_no + top_rated_movies_2
     );
     const responseJSON = await reponse.json();
     setTopMovies(responseJSON.results);

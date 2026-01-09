@@ -110,4 +110,13 @@ a {
   .scrollhide::-webkit-scrollbar {
     display: none;
   }
+
+  /* This ensures the handle/thumb is visible and interactive */
+  .custom-slider::-webkit-slider-thumb {
+    @apply appearance-none pointer-events-auto w-5 h-5 bg-white border-2 border-blue-500 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md;
+  }
+
+  .custom-slider::-moz-range-thumb {
+    @apply appearance-none pointer-events-auto w-5 h-5 bg-white border-2 border-blue-500 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md;
+  }
 }
