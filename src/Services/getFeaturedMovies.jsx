@@ -6,6 +6,12 @@ import { url2 } from "./api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
+const bg_path_1 = "https://api.themoviedb.org/3/movie/";
+const bg_path_2 =
+  "/images?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&include_image_language=en";
+
+//   https://api.themoviedb.org/3/movie/83533/images?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&include_image_language=en
+
 const GetFeaturedMovies = () => {
   const page_no = 1;
   const [topMovies, setTopMovies] = useState([]);
@@ -24,19 +30,42 @@ const GetFeaturedMovies = () => {
       // top_rated_movies_1 + page_no + top_rated_movies_2
     );
     const responseJSON = await reponse.json();
-    setTopMovies(responseJSON.results);
+    // 1. Get the first 3 movies from the initial list
+    const firstThree = responseJSON.results.slice(0, 3);
+
+    // 2. Map through those 3 and fetch their specific backdrop images
+    const enrichedMovies = await Promise.all(
+      firstThree.map(async (movie) => {
+        const imageRes = await fetch(bg_path_1 + movie.id + bg_path_2);
+        const imageData = await imageRes.json();
+
+        // 3. Pick the first backdrop from the results, or fallback to the default if empty
+        const customBackdrop =
+          imageData.backdrops && imageData.backdrops[0]
+            ? imageData.backdrops[0].file_path
+            : movie.backdrop_path;
+
+        return {
+          ...movie,
+          custom_backdrop: customBackdrop,
+        };
+      })
+    );
+
+    setTopMovies(enrichedMovies);
+    // setTopMovies(responseJSON.results);
   };
 
   return (
     <div className="grid grid-cols-2 gap-4 gap-y-0 md:grid-cols-3 duration-200 ease-in-out">
-      {topMovies.slice(0, 3).map((movie) => {
+      {topMovies.map((movie) => {
         return (
           <div key={movie.id} className="w-full h-[80%] relative">
             <FeaturedMoviesCards
               key={movie.id}
               id={movie.id}
               title={movie.title}
-              backdrop={IMGPATH + movie.backdrop_path}
+              backdrop={IMGPATH + movie.custom_backdrop}
               poster={IMGPATH + movie.poster_path}
               vote={movie.vote_average}
             />
@@ -49,3 +78,7 @@ const GetFeaturedMovies = () => {
 };
 
 export default GetFeaturedMovies;
+
+// const backdrop_image = await fetch(bg_path_1 + movie.id + bg_path_2);
+//         const responseJSON2 = await backdrop_image.json();
+//         console.log(responseJSON2.backdrops[1].file_path);

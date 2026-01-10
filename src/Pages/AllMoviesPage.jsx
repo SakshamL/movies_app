@@ -9,7 +9,7 @@ import RangeSlider from "../Components/rangeSlider";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 function AllMoviesPage() {
-  const newPage = 1;
+  const newPage = 2;
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -18,7 +18,7 @@ function AllMoviesPage() {
     movies_api + newPage + "&with_genres="
   );
 
-  const [range, setRange] = useState({ min: 2015, max: 2026 });
+  // const [range, setRange] = useState({ min: 2015, max: 2026 });
 
   useEffect(() => {
     getMovies();
@@ -63,20 +63,20 @@ function AllMoviesPage() {
     getMovies();
   }, [selectedGenres]);
 
-  useEffect(() => {
-    // Debounce: Wait 500ms after the user stops moving the slider
-    const delayDebounceFn = setTimeout(() => {
-      console.log(`Fetching TMDb movies from ${range.min} to ${range.max}...`);
+  // useEffect(() => {
+  //   // Debounce: Wait 500ms after the user stops moving the slider
+  //   const delayDebounceFn = setTimeout(() => {
+  //     console.log(`Fetching TMDb movies from ${range.min} to ${range.max}...`);
 
-      const startDate = `${range.min}-01-01`;
-      const endDate = `${range.max}-12-31`;
+  //     const startDate = `${range.min}-01-01`;
+  //     const endDate = `${range.max}-12-31`;
 
-      // Call your API fetch function here
-      // fetchMovies(startDate, endDate);
-    }, 500);
+  //     // Call your API fetch function here
+  //     // fetchMovies(startDate, endDate);
+  //   }, 500);
 
-    return () => clearTimeout(delayDebounceFn);
-  }, [range]);
+  //   return () => clearTimeout(delayDebounceFn);
+  // }, [range]);
 
   const getMovies = async () => {
     // const response = await fetch(movies_api + newPage + movies_api_2);
@@ -121,11 +121,11 @@ function AllMoviesPage() {
       {/* ---------------------------------------------------------------------------------- */}
       <div className="flex gap-3">
         <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
-          <RangeSlider
+          {/* <RangeSlider
             min={1990}
             max={2026}
             onChange={(newVal) => setRange(newVal)}
-          />
+          /> */}
           <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">
             Genre Filters
           </h2>
