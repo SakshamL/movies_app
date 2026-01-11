@@ -48,7 +48,7 @@ export const url3 =
 
 // export const movies_api_2 = ``;
 
-export const movies_api = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&with_original_language=hi&primary_release_year=2025&page=`;
+export const movies_api = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&with_original_language=hi&primary_release_year=&page=`;
 
 // export const movies_api_2 = `&&primary_release_year=2025&with_original_language=hi`;
 

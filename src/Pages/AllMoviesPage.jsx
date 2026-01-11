@@ -90,13 +90,14 @@ function AllMoviesPage() {
   };
 
   const checkSelectedGenres = async (e) => {
-    const id = e.target.id;
-
-    if (e.target.checked) {
-      setSelectedGenres([...selectedGenres, id]);
-    } else {
-      setSelectedGenres(selectedGenres.filter((item) => item !== id));
-    }
+    const id = e.target.value;
+    setSelectedGenres([id]);
+    // console.log(id);
+    // if (e.target.checked) {
+    //   setSelectedGenres([...selectedGenres, id]);
+    // } else {
+    //   setSelectedGenres(selectedGenres.filter((item) => item !== id));
+    // }
   };
 
   return (
@@ -117,40 +118,61 @@ function AllMoviesPage() {
         </div> */}
       {/* ---------------------------------------------------------------------------------- */}
       <div className="flex gap-3">
-        <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
+        {/* <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
           <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">
             Genre Filters
           </h2>
-          <div className="flex flex-wrap gap-x-2 gap-y-7 text-[#ffffff6d]">
-            {genres.map((gen) => (
-              // <p key={gen.id}>{gen.name}</p>
-              <div
-                key={gen.id}
-                className="flex flex-1 relative items-center justify-center"
-              >
-                <input
-                  type="checkbox"
-                  id={gen.id}
-                  name={gen.name}
-                  value={gen.name}
-                  onChange={checkSelectedGenres}
-                  className={`peer cursor-pointer absolute rounded-lg appearance-none w-full h-10 border-3 checked:border-[#311670] checked:brightness-[1.5] border-[#ffffff65] `}
-                />
-                <label
-                  htmlFor={gen.id}
-                  className={`px-3 py-1 cursor-pointer text-nowrap text-[14px] font-semibold peer-checked:text-[#632ae9] `}
-                >
-                  {gen.name}
-                </label>
-              </div>
-            ))}
-          </div>
-        </div>
+          <div className="flex flex-wrap gap-x-2 gap-y-7 text-[#ffffff6d]"></div>
+        </div> */}
 
         {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
         <div className="flex-8">
           <SearchBar />
-          <div className=" grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-5 ">
+          <div className="flex mt-5">
+            <p className="mr-5">Genres : </p>
+            <select
+              name="genre"
+              id="genre"
+              onChange={checkSelectedGenres}
+              className="border-2 rounded border-[#ffffff26] outline-0"
+            >
+              <option value="" className="text-black">
+                All
+              </option>
+              {genres.map((gen) => (
+                // <p key={gen.id}>{gen.name}</p>
+                <option
+                  value={gen.id}
+                  id={gen.id}
+                  className=" text-black"
+                  key={gen.id}
+                >
+                  {gen.name}
+                </option>
+                // <div
+                //   key={gen.id}
+                //   className="flex flex-1 relative items-center justify-center"
+                // >
+                //   <input
+                //     type="checkbox"
+                //     id={gen.id}
+                //     name={gen.name}
+                //     value={gen.name}
+                //     onChange={checkSelectedGenres}
+                //     className={`peer cursor-pointer absolute rounded-lg appearance-none w-full h-10 border-3 checked:border-[#311670] checked:brightness-[1.5] border-[#ffffff65] `}
+                //   />
+                //   <label
+                //     htmlFor={gen.id}
+                //     className={`px-3 py-1 cursor-pointer text-nowrap text-[14px] font-semibold peer-checked:text-[#632ae9] `}
+                //   >
+                //     {gen.name}
+                //   </label>
+                // </div>
+              ))}
+            </select>
+          </div>
+
+          <div className=" grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
             {movies.map((movie) => (
               <div
                 key={movie.id}

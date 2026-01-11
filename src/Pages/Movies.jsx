@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import AllMoviesPage from "./AllMoviesPage";
 
-
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 function Movies() {
