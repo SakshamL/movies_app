@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import FeaturedMoviesCards from "../Components/FeaturedMoviesCards";
 import { top_rated_movies_1, top_rated_movies_2 } from "./api";
-import { url2 } from "./api";
+import { movieAPI } from "./api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -22,16 +22,16 @@ const GetFeaturedMovies = () => {
 
   useEffect(() => {
     getTopMovies();
-  }, [url2]);
+  }, []);
 
   const getTopMovies = async () => {
-    const reponse = await fetch(
-      url2
-      // top_rated_movies_1 + page_no + top_rated_movies_2
-    );
-    const responseJSON = await reponse.json();
+    const response = await movieAPI.getFeaturedMovies();
+    // top_rated_movies_1 + page_no + top_rated_movies_2
+
+    // const responseJSON = await reponse.json();
+
     // 1. Get the first 3 movies from the initial list
-    const firstThree = responseJSON.results.slice(0, 3);
+    const firstThree = response.results.slice(0, 3);
 
     // 2. Map through those 3 and fetch their specific backdrop images
     const enrichedMovies = await Promise.all(

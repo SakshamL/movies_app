@@ -1,48 +1,59 @@
 // import { useState } from "react";
 
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
+
+// Helper function to handle the actual fetch logic
+const fetchFromTMDB = async (endpoint, params = "") => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}${endpoint}?api_key=${API_KEY}${params}`
+    );
+    if (!response.ok) throw new Error("Network response was not ok");
+    return await response.json();
+  } catch (error) {
+    console.error("API Fetch Error:", error);
+    return null;
+  }
+};
+
 // 1. Calculate the date window (45 days)
 const today = new Date();
 const startDate = new Date();
 startDate.setDate(today.getDate() - 45);
 const formatDate = (date) => date.toISOString().split("T")[0];
 
-const API_KEY = "04c35731a5ee918f014970082a0088b1";
-
 // hi: Hindi, en: English, pa: Punjabi, te: Telugu, ta: Tamil, ml: Malayalam, kn: Kannada
 const languages = ["hi", "en", "pa", "te", "ta", "ml", "kn"].join("|");
-const languages2 = ["hi"].join("|");
-const languages3 = ["en"].join("|");
+const langHindi = "hi";
+const langEng = "en";
 const releaseTypes = "2|3|4";
 
-export const url =
-  `https://api.themoviedb.org/3/discover/movie` +
-  `?api_key=${API_KEY}` +
-  `&region=IN` +
-  `&with_release_type=${releaseTypes}` +
-  `&with_original_language=${languages2}` +
-  `&release_date.gte=${formatDate(startDate)}` +
-  `&release_date.lte=${formatDate(today)}` +
-  `&sort_by=popularity.desc`;
+export const movieAPI = {
+  getHindiMovies: (page = 1) =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&page=${page}&region=IN&with_release_type=${releaseTypes}&with_original_language=${langHindi}&release_date.gte=${formatDate(
+        startDate
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+    ),
 
-export const url2 =
-  `https://api.themoviedb.org/3/discover/movie` +
-  `?api_key=${API_KEY}` +
-  `&region=IN` +
-  `&with_release_type=${releaseTypes}` +
-  `&with_original_language=${languages}` +
-  `&release_date.gte=${formatDate(startDate)}` +
-  `&release_date.lte=${formatDate(today)}` +
-  `&sort_by=popularity.desc`;
+  getEnglishMovies: (page = 1) =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&page=${page}&region=IN&with_release_type=${releaseTypes}&with_original_language=${langEng}&release_date.gte=${formatDate(
+        startDate
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+    ),
 
-export const url3 =
-  `https://api.themoviedb.org/3/discover/movie` +
-  `?api_key=${API_KEY}` +
-  `&region=IN` +
-  `&with_release_type=${releaseTypes}` +
-  `&with_original_language=${languages3}` +
-  `&release_date.gte=${formatDate(startDate)}` +
-  `&release_date.lte=${formatDate(today)}` +
-  `&sort_by=popularity.desc`;
+  getFeaturedMovies: () =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&region=IN&with_release_type=${releaseTypes}&with_original_language=${languages}&release_date.gte=${formatDate(
+        startDate
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+    ),
+};
 
 // export const movies_api_1 = `https://api.themoviedb.org/3/movie/now_playing?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&with_original_language=hi&page=`;
 

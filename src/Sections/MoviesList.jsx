@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { movies_api } from "../Services/api";
+import { movieAPI } from "../Services/api";
+// import { movies_api } from "../Services/api";
 // import { movies_api_2 } from "../Services/api";
 import MovieCard from "../Components/MovieCard";
-import { url } from "../Services/api";
-import { url3 } from "../Services/api";
+// import { url } from "../Services/api";
+// import { url3 } from "../Services/api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -12,31 +13,29 @@ function MoviesList() {
   // const [newPage, setNewPage] = useState(prevpage);
 
   const newPage = 1;
-  // const API_KEY = "04c35731a5ee918f014970082a0088b1";
 
   const [movies, setMovies] = useState([]);
   const [moviesEn, setMoviesEn] = useState([]);
 
-  
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-  useEffect(() => {
-    getMovies();
-  }, [url] , [url3]);
+  useEffect(
+    () => {
+      getMovies();
+    },
+    [movies],
+    [moviesEn]
+  );
 
   const getMovies = async () => {
-    const response = await fetch(url);
-    // const response = await fetch(movies_api + newPage + movies_api_2);
-    const responseJSON = await response.json();
-    setMovies(responseJSON.results);
+    const response = await movieAPI.getHindiMovies(1); // 1 means Page number here..
 
-    const responseEn = await fetch(url3);
     // const response = await fetch(movies_api + newPage + movies_api_2);
-    const responseJSONEn = await responseEn.json();
-    setMoviesEn(responseJSONEn.results);
+    // const responseJSON = await response.json();
+    setMovies(response.results);
+    // console.log(response.results);
+
+    const responseEn = await movieAPI.getEnglishMovies(1);
+    // const response = await fetch(movies_api + newPage + movies_api_2);
+    setMoviesEn(responseEn.results);
   };
 
   return (
@@ -81,8 +80,6 @@ function MoviesList() {
               vote={movie.vote_average}
             />
           </div>
-
-          
         ))}
       </div>
 
@@ -112,8 +109,6 @@ function MoviesList() {
               vote={movie.vote_average}
             />
           </div>
-
-          
         ))}
       </div>
     </>
