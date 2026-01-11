@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { movies_api } from "../Services/api";
+import { movieAPI } from "../Services/api";
+// import { movies_api } from "../Services/api";
 // import { movies_api_2 } from "../Services/api";
 import MovieCard from "../Components/MovieCard";
 import SearchBar from "../Components/SearchBar";
@@ -13,9 +14,9 @@ function AllMoviesPage() {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-  const [sortedMovies, setSortedMovies] = useState(
-    movies_api + newPage + "&with_genres="
-  );
+  // const [sortedMovies, setSortedMovies] = useState(
+  //   movies_api + newPage + "&with_genres="
+  // );
 
   useEffect(() => {
     getMovies();
@@ -25,38 +26,11 @@ function AllMoviesPage() {
   useEffect(() => {
     getMovies();
     getGenres();
-    setSortedMovies(
-      movies_api +
-        newPage +
-        "&with_genres=" +
-        selectedGenres.join().replace(/,/g, "|")
-    );
   }, [newPage]);
 
   useEffect(() => {
-    getMovies();
-    getGenres();
-    setSortedMovies(
-      movies_api +
-        newPage +
-        "&with_genres=" +
-        selectedGenres.join().replace(/,/g, "|")
-    );
-  }, [sortedMovies]);
-
-  useEffect(() => {
-    // console.log(selectedGenres)
-    setSortedMovies(
-      movies_api +
-        newPage +
-        "&with_genres=" +
-        selectedGenres.join().replace(/,/g, "|")
-    );
-
     // setSortedMovies(movies_api + newPage + movies_api_2 + "&with_genres=" + selectedGenres.join().replace(/,/g,"|") )
 
-    // console.log(selectedGenres.join().replace(/,/g,"|"))
-    // console.log(movies_api + newPage + movies_api_2 + "&with_genres=" + selectedGenres.join())
     getMovies();
   }, [selectedGenres]);
 
@@ -77,9 +51,10 @@ function AllMoviesPage() {
 
   const getMovies = async () => {
     // const response = await fetch(movies_api + newPage + movies_api_2);
-    const response = await fetch(sortedMovies);
-    const responseJSON = await response.json();
-    setMovies(responseJSON.results);
+    const response = await movieAPI.getAllMovies(1, selectedGenres);
+    // const response = await fetch(sortedMovies);
+    // const responseJSON = await response.json();
+    setMovies(response.results);
   };
 
   const getGenres = async () => {

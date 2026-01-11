@@ -53,15 +53,13 @@ export const movieAPI = {
         startDate
       )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
     ),
+
+  getAllMovies: (page = 1, gen = "") =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&region=IN&&sort_by=popularity.desc&with_original_language=hi|pa|te|ta|ml|kn&primary_release_year=2025&page=${page}&with_genres=${gen}`
+    ),
 };
-
-// export const movies_api_1 = `https://api.themoviedb.org/3/movie/now_playing?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&with_original_language=hi&page=`;
-
-// export const movies_api_2 = ``;
-
-export const movies_api = `https://api.themoviedb.org/3/discover/movie?api_key=04c35731a5ee918f014970082a0088b1&region=IN&sort_by=popularity.desc&with_original_language=hi&primary_release_year=&page=`;
-
-// export const movies_api_2 = `&&primary_release_year=2025&with_original_language=hi`;
 
 export const tv_shows = `https://api.themoviedb.org/3/discover/tv?include_adult=false&api_key=04c35731a5ee918f014970082a0088b1&include_null_first_air_dates=false&&page=1&sort_by=popularity.desc&region=IN&with_original_language=hi`;
 
