@@ -4,7 +4,6 @@ import { movies_api } from "../Services/api";
 import MovieCard from "../Components/MovieCard";
 import SearchBar from "../Components/SearchBar";
 import { movie_genres } from "../Services/api";
-import RangeSlider from "../Components/rangeSlider";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -17,8 +16,6 @@ function AllMoviesPage() {
   const [sortedMovies, setSortedMovies] = useState(
     movies_api + newPage + "&with_genres="
   );
-
-  // const [range, setRange] = useState({ min: 2015, max: 2026 });
 
   useEffect(() => {
     getMovies();
@@ -121,11 +118,6 @@ function AllMoviesPage() {
       {/* ---------------------------------------------------------------------------------- */}
       <div className="flex gap-3">
         <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
-          {/* <RangeSlider
-            min={1990}
-            max={2026}
-            onChange={(newVal) => setRange(newVal)}
-          /> */}
           <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">
             Genre Filters
           </h2>
