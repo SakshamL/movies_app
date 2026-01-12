@@ -4,6 +4,7 @@ import SearchBar from "../Components/SearchBar";
 import MoviesList from "../Sections/MoviesList";
 import TvList from "../Sections/TvList";
 import GetFeaturedMovies from "../Services/getFeaturedMovies";
+import MovieStreamer from "./testplyaer";
 
 function HomePage() {
   return (
@@ -18,6 +19,7 @@ function HomePage() {
 
         <MoviesList />
         <TvList />
+        <MovieStreamer videoId="1227128" />
       </div>
       {/* TV Shows */}
     </>
