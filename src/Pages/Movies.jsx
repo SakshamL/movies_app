@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { movie_details_1, movie_details_2 } from "../Services/api";
-import { cast_api_1, cast_api_2 } from "../Services/api";
-import { movie_cert_1, movie_cert_2 } from "../Services/api";
+// import { movie_details_1, movie_details_2 } from "../Services/api";
+import { movieAPI } from "../Services/api";
+// import { cast_api_1, cast_api_2 } from "../Services/api";
+// import { movie_cert_1, movie_cert_2 } from "../Services/api";
 import { movie_trailer_1, movie_trailer_2 } from "../Services/api";
 import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
@@ -35,26 +36,29 @@ function Movies() {
 
   const getMovie_details = async () => {
     if (id) {
-      const response = await fetch(movie_details_1 + id + movie_details_2);
-      const responseJSON = await response.json();
-      setMovieDetails(responseJSON);
+      const response = await movieAPI.getMovieDetails(id);
+      // const response = await fetch(movie_details_1 + id + movie_details_2);
+      // const responseJSON = await response.json();
+      setMovieDetails(response);
     }
   };
 
   const getcast_details = async () => {
     if (id) {
-      const response = await fetch(cast_api_1 + id + cast_api_2);
-      const responseJSON = await response.json();
-      setCast(responseJSON.cast);
+      const response = await movieAPI.getCast(id);
+      // const response = await fetch(cast_api_1 + id + cast_api_2);
+      // const responseJSON = await response.json();
+      setCast(response.cast);
       // console.log(responseJSON.cast);
     }
   };
 
   const get_cert = async () => {
     if (id) {
-      const response = await fetch(movie_cert_1 + id + movie_cert_2);
-      const responseJSON = await response.json();
-      responseJSON.results.forEach((element) => {
+      const response = await movieAPI.getCert(id);
+      // const response = await fetch(movie_cert_1 + id + movie_cert_2);
+      // const responseJSON = await response.json();
+      response.results.forEach((element) => {
         if (element.iso_3166_1 == "IN") {
           setMovieCert(element.release_dates[0].certification);
           // console.log(element.release_dates[0].certification);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { movie_genres } from "../Services/api";
+// import { movie_genres } from "../Services/api";
+import { movieAPI } from "../Services/api";
 
 const GenreDropdown = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +20,10 @@ const GenreDropdown = ({ options, onSelect }) => {
   };
 
   const getGenres = async () => {
-    const response = await fetch(movie_genres);
-    const responseJSON = await response.json();
-    setGenres(responseJSON.genres);
+    const response = await movieAPI.getGenres();
+    // const response = await fetch(movie_genres);
+    // const responseJSON = await response.json();
+    setGenres(response.genres);
     // console.log(responseJSON.genres)
   };
 

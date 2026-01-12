@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import FeaturedMoviesCards from "../Components/FeaturedMoviesCards";
-import { top_rated_movies_1, top_rated_movies_2 } from "./api";
+// import { top_rated_movies_1, top_rated_movies_2 } from "./api";
 import { movieAPI } from "./api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";

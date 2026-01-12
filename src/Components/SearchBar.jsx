@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { search_api } from "../Services/api";
+// import { search_api } from "../Services/api";
+import { movieAPI } from "../Services/api";
 import SearchCard from "./SearchCard";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
@@ -24,13 +25,14 @@ function SearchBar() {
   };
 
   const getSearchedItems = async () => {
-    const response = await fetch(search_api[0] + searched + search_api[2]);
-    const responseJSON = await response.json();
+    const response = await movieAPI.searchMovies(searched);
+    // const response = await fetch(search_api[0] + searched + search_api[2]);
+    // const responseJSON = await response.json();
     // // FILTERING HAPPENS HERE:
     // const filteredResults = responseJSON.results.filter((movie) =>
     //   allowedLanguages.includes(movie.original_language)
     // );
-    setSearchResults(responseJSON.results);
+    setSearchResults(response.results);
   };
 
   return (
@@ -51,7 +53,7 @@ function SearchBar() {
         {searchedResults.length > 0 ? (
           searchedResults.map((result) => {
             return (
-              <>
+              <div key={result.id}>
                 <div className="h-[200px] w-[150px] relative">
                   <SearchCard
                     key={result.id}
@@ -65,7 +67,7 @@ function SearchBar() {
                     vote={result.vote_average}
                   />
                 </div>
-              </>
+              </div>
             );
           })
         ) : (

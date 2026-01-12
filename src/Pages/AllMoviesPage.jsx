@@ -4,7 +4,7 @@ import { movieAPI } from "../Services/api";
 // import { movies_api_2 } from "../Services/api";
 import MovieCard from "../Components/MovieCard";
 import SearchBar from "../Components/SearchBar";
-import { movie_genres } from "../Services/api";
+// import { movie_genres } from "../Services/api";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -58,9 +58,10 @@ function AllMoviesPage() {
   };
 
   const getGenres = async () => {
-    const response = await fetch(movie_genres);
-    const responseJSON = await response.json();
-    setGenres(responseJSON.genres);
+    const response = await movieAPI.getGenres();
+    // const response = await fetch(movie_genres);
+    // const responseJSON = await response.json();
+    setGenres(response.genres);
     // console.log(responseJSON.genres)
   };
 
