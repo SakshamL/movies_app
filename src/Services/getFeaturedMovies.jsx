@@ -31,7 +31,7 @@ const GetFeaturedMovies = () => {
     // const responseJSON = await reponse.json();
 
     // 1. Get the first 3 movies from the initial list
-    const firstThree = response.results.slice(0, 3);
+    const firstThree = response.results.slice(0, 4);
 
     // 2. Map through those 3 and fetch their specific backdrop images
     const enrichedMovies = await Promise.all(
@@ -57,7 +57,7 @@ const GetFeaturedMovies = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 gap-y-0 md:grid-cols-3 duration-200 ease-in-out">
+    <div className="grid grid-cols-2 gap-4 gap-y-0 md:grid-cols-4 duration-200 ease-in-out">
       {topMovies.map((movie) => {
         return (
           <div key={movie.id} className="w-full h-[80%] relative">
