@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 // import { search_api } from "../Services/api";
 import { movieAPI } from "../Services/api";
 import SearchCard from "./SearchCard";
+import MovieCard from "./MovieCard";
+import TVCard from "./TVCard";
+import PersonCard from "./PersonCard";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -51,25 +54,62 @@ function SearchBar() {
       >
         {" "}
         {searchedResults.length > 0 ? (
-          searchedResults.map((result) => {
-            return (
-              <div key={result.id}>
-                <div className="h-[200px] w-[150px] relative">
-                  <SearchCard
-                    key={result.id}
-                    id={result.id}
-                    title={result.title}
-                    poster_path={
-                      result.poster_path === null
-                        ? `no-poster.jpg`
-                        : IMGPATH + result.poster_path
-                    }
-                    vote={result.vote_average}
-                  />
+          searchedResults
+            .filter((item) => item.media_type != "person")
+            .map((result) => {
+              return (
+                <div key={result.id}>
+                  <div className="h-[200px] w-[150px] relative">
+                    {/* <SearchCard */}
+                    {result.media_type == "movie" ? (
+                      <MovieCard
+                        key={result.id}
+                        id={result.id}
+                        title={result.title}
+                        poster_path={
+                          (result.poster_path === null) |
+                          (result.poster_path === undefined)
+                            ? `no-poster.jpg`
+                            : IMGPATH + result.poster_path
+                        }
+                        vote={result.vote_average}
+                        media_type="movie"
+                        searchedCard={true}
+                      />
+                    ) : result.media_type == "tv" ? (
+                      <TVCard
+                        key={result.id}
+                        id={result.id}
+                        name={result.name}
+                        poster_path={
+                          (result.poster_path === null) |
+                          (result.poster_path === undefined)
+                            ? `no-poster.jpg`
+                            : IMGPATH + result.poster_path
+                        }
+                        vote={result.vote_average}
+                        media_type="tv"
+                        searchedCard={true}
+                      />
+                    ) : (
+                      <PersonCard
+                        key={result.id}
+                        id={result.id}
+                        name={result.name}
+                        poster_path={
+                          (result.profile_path === null) |
+                          (result.profile_path === undefined)
+                            ? `no-poster.jpg`
+                            : IMGPATH + result.profile_path
+                        }
+                        media_type="Person"
+                        searchedCard={true}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })
+              );
+            })
         ) : (
           <p>No Result Found..!!</p>
         )}

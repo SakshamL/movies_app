@@ -84,7 +84,7 @@ export const movieAPI = {
 
   searchMovies: (query = "") =>
     searchFromTMDB(
-      `movie`,
+      `multi`,
       `${query}`,
       "&include_adult=false&language=en-US&page=1"
     ),

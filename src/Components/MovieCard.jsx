@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom";
 
 function MovieCard(props) {
   return (
-    <NavLink to={`/movie/${props.id}/${props.title.toLowerCase().replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")}`}>
+    <NavLink
+      to={`/movie/${props.id}/${props.title
+        .toLowerCase()
+        .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")}`}
+    >
       <div className="w-full h-full relative">
         <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0 "></div>
         <img
@@ -11,11 +15,20 @@ function MovieCard(props) {
           alt={props.title}
           className="w-full h-full rounded-[12px] shadow-[0px_4px_5px_0px_rgba(0,_0,_0,_0.25)] "
         />
-        <p className="text-white absolute left-[10px] bottom-[25px] text-[90%] font-bold font-inter">
+        <p
+          className={`text-white absolute left-[10px] bottom-[25px] ${
+            props.searchedCard ? "text-[70%]" : "text-[90%]"
+          } font-bold font-inter`}
+        >
           {props.title}
         </p>
-        <p className="text-white absolute left-[10px] bottom-[5px] text-[90%] font-inria-sans">
-          {props.release_date}
+        <p
+          className={`text-white absolute left-[10px] bottom-[5px] ${
+            props.searchedCard ? "text-[60%]" : "text-[90%]"
+          } font-inria-sans`}
+        >
+          {props.release_date ? props.release_date.slice(0, 4) : null}
+          {props.media_type}
         </p>
         <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
           {props.vote ? (

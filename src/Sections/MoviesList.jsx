@@ -57,8 +57,8 @@ function MoviesList() {
       {/* ---------------------------------------------------------------------------------- */}
       <h2 className="text-white font-bold text-2xl">Latest Hindi Movies</h2>
       {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
-      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-6 ">
-        {movies.slice(0, 6).map((movie) => (
+      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
+        {movies.slice(0, 7).map((movie) => (
           <div
             key={movie.id}
             className="w-full h-full hover:scale-[1.1] transition duration-150"
@@ -76,7 +76,7 @@ function MoviesList() {
                   ? `/no-poster.jpg`
                   : IMGPATH + movie.poster_path
               }
-              release_date={movie.release_date}
+              release_date={movie.release_date.slice(0, 4)}
               vote={movie.vote_average}
             />
           </div>
@@ -86,8 +86,8 @@ function MoviesList() {
       {/* ---------------------------------------------------------------------------------- */}
       <h2 className="text-white font-bold text-2xl">Latest English Movies</h2>
       {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
-      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-6 ">
-        {moviesEn.slice(0, 6).map((movie) => (
+      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
+        {moviesEn.slice(0, 7).map((movie) => (
           <div
             key={movie.id}
             className="w-full h-full hover:scale-[1.1] transition duration-150"
@@ -105,7 +105,7 @@ function MoviesList() {
                   ? `/no-poster.jpg`
                   : IMGPATH + movie.poster_path
               }
-              release_date={movie.release_date}
+              release_date={movie.release_date.slice(0, 4)}
               vote={movie.vote_average}
             />
           </div>

@@ -1,12 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function TVCard(props) {
+function PersonCard(props) {
   return (
-    <Link
-      to={`/tv/${props.id}`}
-      className="rounded-[10px] focus:outline-[5px] focus:outline-[#bdbdbde9] focus:rounded focus:scale-[1.1] transition duration-200"
-    >
+    <NavLink to={``}>
       <div className="w-full h-full relative">
         <div className="movie-card-gradient w-full h-full absolute opacity-[0.5px] top-0 left-0 "></div>
         <img
@@ -26,22 +23,11 @@ function TVCard(props) {
             props.searchedCard ? "text-[60%]" : "text-[90%]"
           } font-inria-sans`}
         >
-          {props.first_air_date
-            ? props.first_air_date.toString().slice(0, 4)
-            : null}
           {props.media_type}
         </p>
-        <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
-          {props.vote ? (
-            <>
-              {props.vote.toFixed(2)}
-              <img src="/star.png" alt="star" className="w-[15px] h-full" />
-            </>
-          ) : null}
-        </p>
       </div>
-    </Link>
+    </NavLink>
   );
 }
 
-export default TVCard;
+export default PersonCard;
