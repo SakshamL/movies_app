@@ -11,8 +11,8 @@ body {
   ); */
   background: linear-gradient(
     180deg,
-    rgba(13, 23, 29, 1) 0%,
-    rgba(16, 15, 15, 1) 100%
+    rgba(6, 18, 33, 1) 0%,
+    /* rgba(16, 15, 15, 1) 100% */ rgba(0, 0, 0, 1) 100%
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
