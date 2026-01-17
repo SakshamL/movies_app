@@ -17,12 +17,15 @@ function AllMoviesPage() {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [pageNo, setpageNo] = useState(1);
   const [currPage, setcurrPage] = useState(1);
-  const [currYear, setcurrYear] = useState(new Date().getFullYear());
   const [yearsList, setyearsList] = useState([]);
+  const [selectedYear, setselectedYear] = useState(
+    new Date().getFullYear().toString()
+  );
 
   useEffect(() => {
     getMovies();
     getGenres();
+    yearsDropdown();
   }, []);
 
   useEffect(() => {
@@ -41,6 +44,22 @@ function AllMoviesPage() {
     getMovies();
   }, [currPage]);
 
+  useEffect(() => {
+    getMovies();
+  }, [selectedYear]);
+
+  const yearsDropdown = () => {
+    let todayYear = new Date().getFullYear();
+    let tempYearsList = [];
+    while (todayYear >= startYear) {
+      tempYearsList.push(todayYear);
+      todayYear = todayYear - 1;
+    }
+    setyearsList(tempYearsList);
+  };
+
+  // console.log(yearsList);
+
   // useEffect(() => {
   //   // Debounce: Wait 500ms after the user stops moving the slider
   //   const delayDebounceFn = setTimeout(() => {
@@ -58,7 +77,11 @@ function AllMoviesPage() {
 
   const getMovies = async () => {
     // const response = await fetch(movies_api + newPage + movies_api_2);
-    const response = await movieAPI.getAllMovies(currPage, selectedGenres);
+    const response = await movieAPI.getAllMovies(
+      currPage,
+      selectedGenres,
+      selectedYear
+    );
     // const response = await fetch(sortedMovies);
     // const responseJSON = await response.json();
     setMovies(response.results);
@@ -77,6 +100,12 @@ function AllMoviesPage() {
   const checkSelectedGenres = async (e) => {
     const id = e.target.value;
     setSelectedGenres([id]);
+    setcurrPage(pageNo > 0 ? 1 : 0);
+  };
+
+  const checkSelectedYear = (e) => {
+    const id = e.target.value;
+    setselectedYear([id]);
     setcurrPage(pageNo > 0 ? 1 : 0);
   };
 
@@ -114,22 +143,15 @@ function AllMoviesPage() {
               name="year"
               id="year"
               className="border-2 rounded border-[#ffffff26] outline-0 mx-5"
+              onChange={checkSelectedYear}
             >
-              <option value="2025" className="text-black">
-                2025
-              </option>
-              <option value="2024" className="text-black">
-                2024
-              </option>
-              <option value="2023" className="text-black">
-                2023
-              </option>
-              <option value="2022" className="text-black">
-                2022
-              </option>
-              <option value="2021" className="text-black">
-                2021
-              </option>
+              {yearsList.map((year) => {
+                return (
+                  <option key={year} value={year} className="text-black">
+                    {year}
+                  </option>
+                );
+              })}
             </select>
             <p className="mr-5">Genres : </p>
             <select

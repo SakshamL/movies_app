@@ -68,10 +68,10 @@ export const movieAPI = {
       )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
     ),
 
-  getAllMovies: (page = 1, gen = "") =>
+  getAllMovies: (page = 1, gen = "", year = "") =>
     fetchFromTMDB(
       "/discover/movie",
-      `&region=IN&&sort_by=popularity.desc&with_original_language=hi|pa|te|ta|ml|kn&primary_release_year=2025&page=${page}&with_genres=${gen}`
+      `&region=IN&&sort_by=popularity.desc&with_original_language=hi|pa|te|ta|ml|kn&primary_release_year=${year}&page=${page}&with_genres=${gen}`
     ),
 
   getMovieDetails: (id = "") => fetchFromTMDB(`/movie/${id}`, ``),
