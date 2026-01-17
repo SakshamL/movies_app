@@ -10,13 +10,15 @@ const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 function AllMoviesPage() {
   const newPage = 1;
+  const startYear = 1990;
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-  // const [sortedMovies, setSortedMovies] = useState(
-  //   movies_api + newPage + "&with_genres="
-  // );
+  const [pageNo, setpageNo] = useState(1);
+  const [currPage, setcurrPage] = useState(1);
+  const [currYear, setcurrYear] = useState(new Date().getFullYear());
+  const [yearsList, setyearsList] = useState([]);
 
   useEffect(() => {
     getMovies();
@@ -32,7 +34,12 @@ function AllMoviesPage() {
     // setSortedMovies(movies_api + newPage + movies_api_2 + "&with_genres=" + selectedGenres.join().replace(/,/g,"|") )
 
     getMovies();
+    // setcurrPage(pageNo > 0 ? 1 : 0);
   }, [selectedGenres]);
+
+  useEffect(() => {
+    getMovies();
+  }, [currPage]);
 
   // useEffect(() => {
   //   // Debounce: Wait 500ms after the user stops moving the slider
@@ -51,10 +58,11 @@ function AllMoviesPage() {
 
   const getMovies = async () => {
     // const response = await fetch(movies_api + newPage + movies_api_2);
-    const response = await movieAPI.getAllMovies(1, selectedGenres);
+    const response = await movieAPI.getAllMovies(currPage, selectedGenres);
     // const response = await fetch(sortedMovies);
     // const responseJSON = await response.json();
     setMovies(response.results);
+    setpageNo(response.total_pages);
   };
 
   const getGenres = async () => {
@@ -62,18 +70,14 @@ function AllMoviesPage() {
     // const response = await fetch(movie_genres);
     // const responseJSON = await response.json();
     setGenres(response.genres);
+
     // console.log(responseJSON.genres)
   };
 
   const checkSelectedGenres = async (e) => {
     const id = e.target.value;
     setSelectedGenres([id]);
-    // console.log(id);
-    // if (e.target.checked) {
-    //   setSelectedGenres([...selectedGenres, id]);
-    // } else {
-    //   setSelectedGenres(selectedGenres.filter((item) => item !== id));
-    // }
+    setcurrPage(pageNo > 0 ? 1 : 0);
   };
 
   return (
@@ -104,7 +108,29 @@ function AllMoviesPage() {
         {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
         <div className="flex-8">
           <SearchBar />
-          <div className="flex mt-5">
+          <div className="flex mt-5 justify-center items-center">
+            <p>Year :</p>
+            <select
+              name="year"
+              id="year"
+              className="border-2 rounded border-[#ffffff26] outline-0 mx-5"
+            >
+              <option value="2025" className="text-black">
+                2025
+              </option>
+              <option value="2024" className="text-black">
+                2024
+              </option>
+              <option value="2023" className="text-black">
+                2023
+              </option>
+              <option value="2022" className="text-black">
+                2022
+              </option>
+              <option value="2021" className="text-black">
+                2021
+              </option>
+            </select>
             <p className="mr-5">Genres : </p>
             <select
               name="genre"
@@ -146,6 +172,29 @@ function AllMoviesPage() {
                 // </div>
               ))}
             </select>
+            <p className="ml-3">
+              Page: {currPage} of {pageNo}
+            </p>
+            <button
+              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+                currPage <= 1 ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+              onClick={() => {
+                currPage > 1 ? setcurrPage(Number(currPage) - 1) : null;
+              }}
+            >
+              Prev
+            </button>
+            <button
+              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+                currPage >= pageNo ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+              onClick={() => {
+                currPage < pageNo ? setcurrPage(Number(currPage) + 1) : null;
+              }}
+            >
+              Next
+            </button>
           </div>
 
           <div className=" grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
