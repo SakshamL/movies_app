@@ -14,18 +14,23 @@ function AllMoviesPage() {
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState(
+    sessionStorage.getItem("genre") ? sessionStorage.getItem("genre") : [],
+  );
   const [pageNo, setpageNo] = useState(1);
   const [currPage, setcurrPage] = useState(1);
   const [yearsList, setyearsList] = useState([]);
   const [selectedYear, setselectedYear] = useState(
-    new Date().getFullYear().toString()
+    sessionStorage.getItem("year")
+      ? sessionStorage.getItem("year")
+      : new Date().getFullYear().toString(),
   );
 
   useEffect(() => {
     getMovies();
     getGenres();
     yearsDropdown();
+    sessionStorage.setItem("genre", selectedGenres);
   }, []);
 
   useEffect(() => {
@@ -34,10 +39,8 @@ function AllMoviesPage() {
   }, [newPage]);
 
   useEffect(() => {
-    // setSortedMovies(movies_api + newPage + movies_api_2 + "&with_genres=" + selectedGenres.join().replace(/,/g,"|") )
-
+    sessionStorage.setItem("genre", selectedGenres);
     getMovies();
-    // setcurrPage(pageNo > 0 ? 1 : 0);
   }, [selectedGenres]);
 
   useEffect(() => {
@@ -45,6 +48,7 @@ function AllMoviesPage() {
   }, [currPage]);
 
   useEffect(() => {
+    sessionStorage.setItem("year", selectedYear);
     getMovies();
   }, [selectedYear]);
 
@@ -79,8 +83,8 @@ function AllMoviesPage() {
     // const response = await fetch(movies_api + newPage + movies_api_2);
     const response = await movieAPI.getAllMovies(
       currPage,
-      selectedGenres,
-      selectedYear
+      getgenrefromSession(),
+      getyearfromSession(),
     );
     // const response = await fetch(sortedMovies);
     // const responseJSON = await response.json();
@@ -101,6 +105,16 @@ function AllMoviesPage() {
     const id = e.target.value;
     setSelectedGenres([id]);
     setcurrPage(pageNo > 0 ? 1 : 0);
+  };
+
+  const getgenrefromSession = () => {
+    const gen = sessionStorage.getItem("genre");
+    return gen ? gen : "";
+  };
+
+  const getyearfromSession = () => {
+    const yr = sessionStorage.getItem("year");
+    return yr ? yr : "";
   };
 
   const checkSelectedYear = (e) => {

@@ -138,7 +138,11 @@ function Movies() {
                     </h2>
                   </Link>
 
-                  <Link to={`https://www.youtube.com/watch?v=${trailer}`}>
+                  <Link
+                    to={`https://www.youtube.com/watch?v=${trailer}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
 
                     <h2
