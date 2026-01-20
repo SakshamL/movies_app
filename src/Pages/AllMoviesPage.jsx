@@ -44,9 +44,9 @@ function AllMoviesPage() {
   useEffect(() => {
     sessionStorage.setItem("genre", selectedGenres);
     if (prevGenreRef.current !== selectedGenres) {
-      console.log(
-        `Value Changed! Old: ${prevGenreRef.current}, New: ${selectedGenres}`,
-      );
+      // console.log(
+      //   `Value Changed! Old: ${prevGenreRef.current}, New: ${selectedGenres}`,
+      // );
       prevGenreRef.current = selectedGenres;
       sessionStorage.setItem("page", 1);
     }
