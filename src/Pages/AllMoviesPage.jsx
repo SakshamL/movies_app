@@ -72,10 +72,8 @@ function AllMoviesPage() {
     setyearsList(tempYearsList);
   };
 
-  // console.log(yearsList);
-
+  // Debounce: Wait 500ms after the user stops moving the slider
   // useEffect(() => {
-  //   // Debounce: Wait 500ms after the user stops moving the slider
   //   const delayDebounceFn = setTimeout(() => {
   //     console.log(`Fetching TMDb movies from ${range.min} to ${range.max}...`);
 
