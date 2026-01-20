@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { movieAPI } from "../Services/api";
 // import { movies_api } from "../Services/api";
 // import { movies_api_2 } from "../Services/api";
@@ -15,10 +15,13 @@ function AllMoviesPage() {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState(
-    sessionStorage.getItem("genre") ? sessionStorage.getItem("genre") : [],
+    sessionStorage.getItem("genre") ? sessionStorage.getItem("genre") : "",
   );
+  const prevGenreRef = useRef(sessionStorage.getItem("genre") || "");
   const [pageNo, setpageNo] = useState(1);
-  const [currPage, setcurrPage] = useState(1);
+  const [currPage, setcurrPage] = useState(
+    sessionStorage.getItem("page") ? sessionStorage.getItem("page") : 1,
+  );
   const [yearsList, setyearsList] = useState([]);
   const [selectedYear, setselectedYear] = useState(
     sessionStorage.getItem("year")
@@ -40,6 +43,13 @@ function AllMoviesPage() {
 
   useEffect(() => {
     sessionStorage.setItem("genre", selectedGenres);
+    if (prevGenreRef.current !== selectedGenres) {
+      console.log(
+        `Value Changed! Old: ${prevGenreRef.current}, New: ${selectedGenres}`,
+      );
+      prevGenreRef.current = selectedGenres;
+      sessionStorage.setItem("page", 1);
+    }
     getMovies();
   }, [selectedGenres]);
 
@@ -82,7 +92,7 @@ function AllMoviesPage() {
   const getMovies = async () => {
     // const response = await fetch(movies_api + newPage + movies_api_2);
     const response = await movieAPI.getAllMovies(
-      currPage,
+      getpagefromSession(),
       getgenrefromSession(),
       getyearfromSession(),
     );
@@ -117,6 +127,11 @@ function AllMoviesPage() {
     return yr ? yr : "";
   };
 
+  const getpagefromSession = () => {
+    const pg = sessionStorage.getItem("page");
+    return pg ? pg : 1;
+  };
+
   const checkSelectedYear = (e) => {
     const id = e.target.value;
     setselectedYear([id]);
@@ -141,14 +156,6 @@ function AllMoviesPage() {
         </div> */}
       {/* ---------------------------------------------------------------------------------- */}
       <div className="flex gap-3">
-        {/* <div className="flex-2 border-r-2 border-[#ffffff20] pr-5 mr-5 ">
-          <h2 className="text-[#ffffffcf] font-semibold text-xl mb-5">
-            Genre Filters
-          </h2>
-          <div className="flex flex-wrap gap-x-2 gap-y-7 text-[#ffffff6d]"></div>
-        </div> */}
-
-        {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
         <div className="flex-8">
           <SearchBar />
           <div className="flex mt-5 justify-center items-center">
@@ -156,6 +163,7 @@ function AllMoviesPage() {
             <select
               name="year"
               id="year"
+              value={selectedYear}
               className="border-2 rounded border-[#ffffff26] outline-0 mx-5"
               onChange={checkSelectedYear}
             >
@@ -171,6 +179,7 @@ function AllMoviesPage() {
             <select
               name="genre"
               id="genre"
+              value={selectedGenres}
               onChange={checkSelectedGenres}
               className="border-2 rounded border-[#ffffff26] outline-0"
             >
@@ -187,25 +196,6 @@ function AllMoviesPage() {
                 >
                   {gen.name}
                 </option>
-                // <div
-                //   key={gen.id}
-                //   className="flex flex-1 relative items-center justify-center"
-                // >
-                //   <input
-                //     type="checkbox"
-                //     id={gen.id}
-                //     name={gen.name}
-                //     value={gen.name}
-                //     onChange={checkSelectedGenres}
-                //     className={`peer cursor-pointer absolute rounded-lg appearance-none w-full h-10 border-3 checked:border-[#311670] checked:brightness-[1.5] border-[#ffffff65] `}
-                //   />
-                //   <label
-                //     htmlFor={gen.id}
-                //     className={`px-3 py-1 cursor-pointer text-nowrap text-[14px] font-semibold peer-checked:text-[#632ae9] `}
-                //   >
-                //     {gen.name}
-                //   </label>
-                // </div>
               ))}
             </select>
             <p className="ml-3">
@@ -216,7 +206,10 @@ function AllMoviesPage() {
                 currPage <= 1 ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={() => {
-                currPage > 1 ? setcurrPage(Number(currPage) - 1) : null;
+                if (currPage > 1) {
+                  setcurrPage(Number(currPage) - 1);
+                  sessionStorage.setItem("page", Number(currPage) - 1);
+                }
               }}
             >
               Prev
@@ -226,7 +219,10 @@ function AllMoviesPage() {
                 currPage >= pageNo ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={() => {
-                currPage < pageNo ? setcurrPage(Number(currPage) + 1) : null;
+                if (currPage < pageNo) {
+                  setcurrPage(Number(currPage) + 1);
+                  sessionStorage.setItem("page", Number(currPage) + 1);
+                }
               }}
             >
               Next
