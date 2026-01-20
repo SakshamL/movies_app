@@ -252,6 +252,37 @@ function AllMoviesPage() {
               </div>
             ))}
           </div>
+          <div className="flex justify-center mb-20">
+            <p className="ml-3">
+              Page: {currPage} of {pageNo}
+            </p>
+            <button
+              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+                currPage <= 1 ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+              onClick={() => {
+                if (currPage > 1) {
+                  setcurrPage(Number(currPage) - 1);
+                  sessionStorage.setItem("page", Number(currPage) - 1);
+                }
+              }}
+            >
+              Prev
+            </button>
+            <button
+              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+                currPage >= pageNo ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
+              onClick={() => {
+                if (currPage < pageNo) {
+                  setcurrPage(Number(currPage) + 1);
+                  sessionStorage.setItem("page", Number(currPage) + 1);
+                }
+              }}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </>

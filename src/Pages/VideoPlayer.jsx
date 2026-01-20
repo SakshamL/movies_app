@@ -28,7 +28,7 @@ const VideoPlayer = () => {
         width="100%"
         height="100%"
         src={`https://vidfast.pro/movie/${id}?autoPlay=true&server=Bollywood`}
-        allowfullscreen="true"
+        allowFullscreen="true"
       ></iframe>
     </div>
   );
