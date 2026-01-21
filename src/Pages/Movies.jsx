@@ -78,6 +78,7 @@ function Movies(props) {
   function Movie_details() {
     return (
       <>
+        <title>{movieDetails.title + " - WatchAll"}</title>
         <div className="text-white flex flex-col w-full ml-[4%] mr-[4%]">
           {/* <SearchBar /> */}
           <div className="relative mt-10">

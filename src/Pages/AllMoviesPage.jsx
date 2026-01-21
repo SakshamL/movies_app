@@ -181,6 +181,7 @@ function AllMoviesPage(props) {
 
   return (
     <>
+      <title>{"All Movies - WatchAll"}</title>
       {/* <div className="text-[black]  flex justify-center">
           //{" "}
           <button

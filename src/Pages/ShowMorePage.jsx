@@ -175,6 +175,13 @@ function ShowMorePage(props) {
 
   return (
     <>
+      {props.language == "hi" ? (
+        <title>{"Hindi Movies - WatchAll"}</title>
+      ) : props.language == "en" ? (
+        <title>{"English Movies - WatchAll"}</title>
+      ) : (
+        <title>{"All Movies - WatchAll"}</title>
+      )}
       {/* <div className="text-[black]  flex justify-center">
           //{" "}
           <button
