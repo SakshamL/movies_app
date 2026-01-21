@@ -29,6 +29,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/hindi" element={<Movies language="hi" />} />
+          <Route path="/movies/english" element={<Movies language="en" />} />
           <Route path="/tv" element={<TVShows />} />
           <Route path="/genres" element={<Genres />} />
           <Route path="/movie/:id/:title" element={<Movies />} />

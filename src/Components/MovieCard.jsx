@@ -15,6 +15,7 @@ function MovieCard(props) {
           alt={props.title}
           className="w-full h-full rounded-[12px] shadow-[0px_4px_5px_0px_rgba(0,_0,_0,_0.25)] "
         />
+
         <p
           className={`text-white absolute left-[10px] bottom-[25px] ${
             props.searchedCard ? "text-[70%]" : "text-[90%]"
@@ -27,9 +28,13 @@ function MovieCard(props) {
             props.searchedCard ? "text-[60%]" : "text-[90%]"
           } font-inria-sans`}
         >
-          {props.release_date ? props.release_date.slice(0, 4) : null}
+          {props.release_date ? props.release_date : null}
+
           {props.media_type}
         </p>
+        <div className="absolute top-1 right-1 bg-[#4c1fb6] font-bold text-white text-[10pt]  rounded py-0 px-1">
+          {props.lang}
+        </div>
         <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
           {props.vote ? (
             <>

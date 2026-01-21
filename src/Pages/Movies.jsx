@@ -1,19 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { movie_details_1, movie_details_2 } from "../Services/api";
 import { movieAPI } from "../Services/api";
-// import { cast_api_1, cast_api_2 } from "../Services/api";
-// import { movie_cert_1, movie_cert_2 } from "../Services/api";
 import { movie_trailer_1, movie_trailer_2 } from "../Services/api";
 import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import AllMoviesPage from "./AllMoviesPage";
+import ShowMorePage from "./ShowMorePage";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
-function Movies() {
+function Movies(props) {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [cast, setCast] = useState([]);
@@ -231,9 +229,25 @@ function Movies() {
     );
   }
 
+  function Show_More_Movies(props) {
+    return (
+      <>
+        {/* <h2>Here, You will the list of All Movies..!!</h2> */}
+
+        <ShowMorePage language={props.language} />
+      </>
+    );
+  }
+
   return (
     <div className="text-white flex justify-center mt-10 ">
-      {id ? <Movie_details /> : <All_Movies_list />}
+      {id ? (
+        <Movie_details />
+      ) : props.language ? (
+        <Show_More_Movies language={props.language} />
+      ) : (
+        <All_Movies_list />
+      )}
     </div>
   );
 }

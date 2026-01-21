@@ -34,31 +34,31 @@ function Navbar() {
         > */}
         <ul id="navbar" className="hidden text-white max-lg:flex-col lg:flex ">
           <li className="">
-            <NavLink
+            <Link
               to="/"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
               Home
-            </NavLink>
+            </Link>
           </li>
           <li className="">
-            <NavLink
+            <Link
               to="/movies"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
-              Movies
-            </NavLink>
+              All Movies
+            </Link>
           </li>
           <li className="">
-            <NavLink
+            <Link
               to="/tv"
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
-              TV Shows
-            </NavLink>
+              All TV Shows
+            </Link>
           </li>
           {/* <li className="">
             <NavLink

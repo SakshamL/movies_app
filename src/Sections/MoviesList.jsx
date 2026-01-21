@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { movieAPI } from "../Services/api";
-// import { movies_api } from "../Services/api";
-// import { movies_api_2 } from "../Services/api";
 import MovieCard from "../Components/MovieCard";
-// import { url } from "../Services/api";
-// import { url3 } from "../Services/api";
+import { FaArrowRight } from "react-icons/fa";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -22,7 +20,7 @@ function MoviesList() {
       getMovies();
     },
     [movies],
-    [moviesEn]
+    [moviesEn],
   );
 
   const getMovies = async () => {
@@ -55,7 +53,15 @@ function MoviesList() {
         </button>
       </div> */}
       {/* ---------------------------------------------------------------------------------- */}
-      <h2 className="text-white font-bold text-2xl">Latest Hindi Movies</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-white font-bold text-2xl">Latest Hindi Movies</h2>
+        <Link to={`/movies/hindi`}>
+          <h2 className="text-[grey] font-bold text-[12pt] flex items-center gap-3">
+            Show More <FaArrowRight />{" "}
+          </h2>
+        </Link>
+      </div>
+
       {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
       <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
         {movies.slice(0, 7).map((movie) => (
@@ -84,7 +90,14 @@ function MoviesList() {
       </div>
 
       {/* ---------------------------------------------------------------------------------- */}
-      <h2 className="text-white font-bold text-2xl">Latest English Movies</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-white font-bold text-2xl">Latest English Movies</h2>
+        <Link to={`/movies/english`}>
+          <h2 className="text-[grey] font-bold text-[12pt] flex items-center gap-3">
+            Show More <FaArrowRight />{" "}
+          </h2>
+        </Link>
+      </div>
       {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
       <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
         {moviesEn.slice(0, 7).map((movie) => (

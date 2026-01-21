@@ -7,7 +7,7 @@ const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 const fetchFromTMDB = async (endpoint, params = "") => {
   try {
     const response = await fetch(
-      `${BASE_URL}${endpoint}?api_key=${API_KEY}${params}`
+      `${BASE_URL}${endpoint}?api_key=${API_KEY}${params}`,
     );
     if (!response.ok) throw new Error("Network response was not ok");
     return await response.json();
@@ -21,7 +21,7 @@ const fetchFromTMDB = async (endpoint, params = "") => {
 const searchFromTMDB = async (endpoint, searchValue = "", params) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/search/${endpoint}?query=${searchValue}&api_key=${API_KEY}${params}`
+      `${BASE_URL}/search/${endpoint}?query=${searchValue}&api_key=${API_KEY}${params}`,
     );
     if (!response.ok) throw new Error("Network response was not ok");
     return await response.json();
@@ -34,6 +34,10 @@ const searchFromTMDB = async (endpoint, searchValue = "", params) => {
 // 1. Calculate the date window (45 days)
 const today = new Date();
 const startDate = new Date();
+const dateYear = today.getFullYear().toString();
+const dateMonth = (today.getMonth() + 1).toString().padStart(2, "0");
+const todayDate = today.getDate().toString().padStart(2, "0");
+const todayFullDate = dateYear + "-" + dateMonth + "-" + todayDate;
 startDate.setDate(today.getDate() - 45);
 const formatDate = (date) => date.toISOString().split("T")[0];
 
@@ -48,30 +52,42 @@ export const movieAPI = {
     fetchFromTMDB(
       "/discover/movie",
       `&page=${page}&region=IN&with_release_type=${releaseTypes}&with_original_language=${langHindi}&release_date.gte=${formatDate(
-        startDate
-      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+        startDate,
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`,
     ),
 
   getEnglishMovies: (page = 1) =>
     fetchFromTMDB(
       "/discover/movie",
       `&page=${page}&region=IN&with_release_type=${releaseTypes}&with_original_language=${langEng}&release_date.gte=${formatDate(
-        startDate
-      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+        startDate,
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`,
     ),
 
   getFeaturedMovies: () =>
     fetchFromTMDB(
       "/discover/movie",
       `&region=IN&with_release_type=${releaseTypes}&with_original_language=${languages}&release_date.gte=${formatDate(
-        startDate
-      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`
+        startDate,
+      )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`,
     ),
 
   getAllMovies: (page = 1, gen = "", year = "") =>
     fetchFromTMDB(
       "/discover/movie",
-      `&region=IN&&sort_by=popularity.desc&with_original_language=hi|pa|te|ta|ml|kn&primary_release_year=${year}&page=${page}&with_genres=${gen}`
+      `&region=IN&&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=hi|pa|te|ta|ml|kn&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
+    ),
+
+  getAllHindiMovies: (page = 1, gen = "", year = "") =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&region=IN&&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=hi&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
+    ),
+
+  getAllEnglishMovies: (page = 1, gen = "", year = "") =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&region=IN&&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=en&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
     ),
 
   getMovieDetails: (id = "") => fetchFromTMDB(`/movie/${id}`, ``),
@@ -86,7 +102,7 @@ export const movieAPI = {
     searchFromTMDB(
       `multi`,
       `${query}`,
-      "&include_adult=false&language=en-US&page=1"
+      "&include_adult=false&language=en-US&page=1",
     ),
 };
 

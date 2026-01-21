@@ -5,7 +5,7 @@ import SearchBar from "../Components/SearchBar";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
-function AllMoviesPage(props) {
+function ShowMorePage(props) {
   const newPage = 1;
   const startYear = 1990;
 
@@ -14,9 +14,11 @@ function AllMoviesPage(props) {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState(
-    sessionStorage.getItem("genre") ? sessionStorage.getItem("genre") : "",
+    sessionStorage.getItem("genre-hi")
+      ? sessionStorage.getItem("genre-hi")
+      : "",
   );
-  const prevGenreRef = useRef(sessionStorage.getItem("genre") || "");
+  const prevGenreRef = useRef(sessionStorage.getItem("genre-hi") || "");
   const [pageNo, setpageNo] = useState(1);
   const [currPage, setcurrPage] = useState(
     sessionStorage.getItem("page") ? sessionStorage.getItem("page") : 1,
@@ -32,7 +34,7 @@ function AllMoviesPage(props) {
     getMovies();
     getGenres();
     yearsDropdown();
-    sessionStorage.setItem("genre", selectedGenres);
+    sessionStorage.setItem("genre-hi", selectedGenres);
   }, []);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ function AllMoviesPage(props) {
   }, [newPage]);
 
   useEffect(() => {
-    sessionStorage.setItem("genre", selectedGenres);
+    sessionStorage.setItem("genre-hi", selectedGenres);
     if (prevGenreRef.current !== selectedGenres) {
       // console.log(
       //   `Value Changed! Old: ${prevGenreRef.current}, New: ${selectedGenres}`,
@@ -132,14 +134,6 @@ function AllMoviesPage(props) {
       );
       setMovies(response.results);
       setpageNo(response.total_pages);
-    } else {
-      const response = await movieAPI.getAllMovies(
-        getpagefromSession(),
-        getgenrefromSession(),
-        getyearfromSession(),
-      );
-      setMovies(response.results);
-      setpageNo(response.total_pages);
     }
   };
 
@@ -159,7 +153,7 @@ function AllMoviesPage(props) {
   };
 
   const getgenrefromSession = () => {
-    const gen = sessionStorage.getItem("genre");
+    const gen = sessionStorage.getItem("genre-hi");
     return gen ? gen : "";
   };
 
@@ -333,4 +327,4 @@ function AllMoviesPage(props) {
   );
 }
 
-export default AllMoviesPage;
+export default ShowMorePage;
