@@ -236,7 +236,7 @@ function AllMoviesPage(props) {
                 <option
                   value={gen.id}
                   id={gen.id}
-                  className=" text-black w-fit"
+                  className=" text-black"
                   key={gen.id}
                 >
                   {gen.name}
