@@ -28,7 +28,7 @@ function MovieCard(props) {
             props.searchedCard ? "text-[60%]" : "text-[90%]"
           } font-inria-sans`}
         >
-          {props.release_date ? props.release_date : null}
+          {props.release_date ? props.release_date.slice(0, 4) : null}
 
           {props.media_type}
         </p>

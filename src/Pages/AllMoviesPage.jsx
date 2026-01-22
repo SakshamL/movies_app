@@ -265,7 +265,7 @@ function AllMoviesPage(props) {
               : "All Movies"}
         </div>
 
-        <div className="grid grid-cols-3 gap-4 gap-y-5 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
+        <div className="grid grid-cols-3 gap-4 gap-y-5 mt-10 mb-10 sm:gap-6 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
           {movies.map((movie) => (
             <div
               key={movie.id}
