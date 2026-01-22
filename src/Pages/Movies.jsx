@@ -7,7 +7,7 @@ import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import AllMoviesPage from "./AllMoviesPage";
-import ShowMorePage from "./ShowMorePage";
+// import ShowMorePage from "./ShowMorePage";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -220,35 +220,29 @@ function Movies(props) {
     );
   }
 
-  function All_Movies_list() {
+  function All_Movies_list(props) {
     return (
       <>
         {/* <h2>Here, You will the list of All Movies..!!</h2> */}
 
-        <AllMoviesPage />
+        <AllMoviesPage language={props.language} />
       </>
     );
   }
 
-  function Show_More_Movies(props) {
-    return (
-      <>
-        {/* <h2>Here, You will the list of All Movies..!!</h2> */}
+  // function Show_More_Movies(props) {
+  //   return (
+  //     <>
+  //       {/* <h2>Here, You will the list of All Movies..!!</h2> */}
 
-        <ShowMorePage language={props.language} />
-      </>
-    );
-  }
+  //       <ShowMorePage language={props.language} />
+  //     </>
+  //   );
+  // }
 
   return (
     <div className="text-white flex justify-center mt-10 ">
-      {id ? (
-        <Movie_details />
-      ) : props.language ? (
-        <Show_More_Movies language={props.language} />
-      ) : (
-        <All_Movies_list />
-      )}
+      {id ? <Movie_details /> : <All_Movies_list language={props.language} />}
     </div>
   );
 }

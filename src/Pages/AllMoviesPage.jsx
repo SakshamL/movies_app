@@ -14,25 +14,29 @@ function AllMoviesPage(props) {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState(
-    sessionStorage.getItem("genre") ? sessionStorage.getItem("genre") : "",
+    props.language
+      ? sessionStorage.getItem("genre-hi") || ""
+      : sessionStorage.getItem("genre") || "",
   );
-  const prevGenreRef = useRef(sessionStorage.getItem("genre") || "");
+  const prevGenreRef = useRef(
+    props.language
+      ? sessionStorage.getItem("genre-hi") || ""
+      : sessionStorage.getItem("genre") || "",
+  );
   const [pageNo, setpageNo] = useState(1);
-  const [currPage, setcurrPage] = useState(
-    sessionStorage.getItem("page") ? sessionStorage.getItem("page") : 1,
-  );
+  const [currPage, setcurrPage] = useState(sessionStorage.getItem("page") || 1);
   const [yearsList, setyearsList] = useState([]);
   const [selectedYear, setselectedYear] = useState(
-    sessionStorage.getItem("year")
-      ? sessionStorage.getItem("year")
-      : new Date().getFullYear().toString(),
+    sessionStorage.getItem("year") || new Date().getFullYear().toString(),
   );
 
   useEffect(() => {
     getMovies();
     getGenres();
     yearsDropdown();
-    sessionStorage.setItem("genre", selectedGenres);
+    props.language
+      ? sessionStorage.setItem(`genre-${props.language}`, selectedGenres)
+      : sessionStorage.setItem("genre", selectedGenres);
   }, []);
 
   useEffect(() => {
@@ -41,13 +45,15 @@ function AllMoviesPage(props) {
   }, [newPage]);
 
   useEffect(() => {
-    sessionStorage.setItem("genre", selectedGenres);
+    props.language
+      ? sessionStorage.setItem(`genre-${props.language}`, selectedGenres)
+      : sessionStorage.setItem("genre", selectedGenres);
     if (prevGenreRef.current !== selectedGenres) {
       // console.log(
       //   `Value Changed! Old: ${prevGenreRef.current}, New: ${selectedGenres}`,
       // );
       prevGenreRef.current = selectedGenres;
-      sessionStorage.setItem("page", 1);
+      // sessionStorage.setItem("page", 1);
     }
     getMovies();
   }, [selectedGenres]);
@@ -60,33 +66,6 @@ function AllMoviesPage(props) {
     sessionStorage.setItem("year", selectedYear);
     getMovies();
   }, [selectedYear]);
-
-  // ----------------------------------------------------------------------
-  // useEffect(() => {
-  //   const currentPath = location.pathname;
-  //   const previousPath = prevPathRef.current;
-
-  //   // Check if we are moving between the listing pages
-  //   const isNavigatingBetweenLists =
-  //     (previousPath.includes("hindi-movies") &&
-  //       !currentPath.includes("hindi-movies")) ||
-  //     (!previousPath.includes("hindi-movies") &&
-  //       currentPath.includes("hindi-movies"));
-
-  //   if (isNavigatingBetweenLists) {
-  //     sessionStorage.removeItem("genre");
-  //     sessionStorage.removeItem("page");
-  //     sessionStorage.removeItem("year");
-  //     setSelectedGenres("");
-  //     setselectedYear(new Date().getFullYear().toString());
-  //     setcurrPage(1);
-  //   }
-
-  //   // Update the ref for the next change
-  //   prevPathRef.current = currentPath;
-  // }, [location.pathname]);
-
-  // -----------------------------------------------------------------------
 
   const yearsDropdown = () => {
     let todayYear = new Date().getFullYear();
@@ -123,8 +102,7 @@ function AllMoviesPage(props) {
       );
       setMovies(response.results);
       setpageNo(response.total_pages);
-    }
-    if (props.language == "en") {
+    } else if (props.language == "en") {
       const response = await movieAPI.getAllEnglishMovies(
         getpagefromSession(),
         getgenrefromSession(),
@@ -159,7 +137,9 @@ function AllMoviesPage(props) {
   };
 
   const getgenrefromSession = () => {
-    const gen = sessionStorage.getItem("genre");
+    const gen = props.language
+      ? sessionStorage.getItem("genre-hi")
+      : sessionStorage.getItem("genre");
     return gen ? gen : "";
   };
 
@@ -201,7 +181,7 @@ function AllMoviesPage(props) {
       <div className="w-full">
         <SearchBar />
         <div className="flex flex-col gap-5 justify-center items-center md:flex-row md:gap-0 mt-5">
-          <div className="w-full flex items-center justify-center mt-3 md:mt-0 md:flex-row md:w-[30%]">
+          <div className="opacity-60 w-full flex items-center justify-center mt-3 md:mt-0 md:flex-row md:w-[30%]">
             <p className="mr-3 flex-1 md:flex-0 md:mr-0">Year</p>
             <select
               name="year"
@@ -219,7 +199,7 @@ function AllMoviesPage(props) {
               })}
             </select>
           </div>
-          <div className="w-full flex items-center justify-center md:flex-row md:w-[30%]">
+          <div className="opacity-60 w-full flex items-center justify-center md:flex-row md:w-[30%]">
             <p className="mr-3 flex-1 md:flex-0 md:mr-2">Genres </p>
             <select
               name="genre"
@@ -244,7 +224,7 @@ function AllMoviesPage(props) {
               ))}
             </select>
           </div>
-          <div className="w-full flex items-center justify-center md:justify-end md:flex-row md:w-[50%]">
+          <div className="opacity-60 w-full flex items-center justify-center md:justify-end md:flex-row md:w-[100%]">
             <p className="md:ml-3">
               Page: {currPage} of {pageNo}
             </p>
@@ -277,7 +257,15 @@ function AllMoviesPage(props) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 gap-y-5 mt-10 mb-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="text-3xl font-semibold mt-10 -mb-4 text-start">
+          {props.language == "hi"
+            ? "Hindi Movies"
+            : props.language == "en"
+              ? "English Movies"
+              : "All Movies"}
+        </div>
+
+        <div className="grid grid-cols-3 gap-4 gap-y-5 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
           {movies.map((movie) => (
             <div
               key={movie.id}

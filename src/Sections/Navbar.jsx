@@ -48,7 +48,7 @@ function Navbar() {
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
-              All Movies
+              Movies
             </Link>
           </li>
           <li className="">
@@ -57,7 +57,7 @@ function Navbar() {
               onClick={handleResNavbar}
               className="max-lg:pr-20 max-lg:pl-20 mr-5 font-semibold navbar-menu-items"
             >
-              All TV Shows
+              TV Shows
             </Link>
           </li>
           {/* <li className="">

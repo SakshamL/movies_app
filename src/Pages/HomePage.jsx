@@ -12,8 +12,14 @@ function HomePage() {
     sessionStorage.removeItem("genre");
     sessionStorage.removeItem("year");
     sessionStorage.removeItem("page");
-    sessionStorage.removeItem("genre-hi");
-    console.log("Movie filters cleared for fresh navigation");
+    // sessionStorage.removeItem("genre-hi");
+    // console.log("Movie filters cleared for fresh navigation");
+    const keys = Object.keys(sessionStorage);
+    keys.forEach((key) => {
+      if (key.startsWith("genre-")) {
+        sessionStorage.removeItem(key);
+      }
+    });
   }, []);
   return (
     <>
@@ -23,7 +29,6 @@ function HomePage() {
       </div>
 
       <div className="mt-10 ">
-        {/* <h2 className="text-white text-2xl font-bold mb-5">Featured Movies</h2> */}
         <GetFeaturedMovies />
 
         <MoviesList />
