@@ -197,16 +197,17 @@ function AllMoviesPage(props) {
           </button>
         </div> */}
       {/* ---------------------------------------------------------------------------------- */}
-      <div className="flex gap-3">
-        <div className="flex-8">
-          <SearchBar />
-          <div className="flex mt-5 justify-center items-center">
-            <p>Year :</p>
+      {/* <div> */}
+      <div className="w-full">
+        <SearchBar />
+        <div className="flex flex-col gap-5 justify-center items-center md:flex-row md:gap-0 mt-5">
+          <div className="w-full flex items-center justify-center mt-3 md:mt-0 md:flex-row md:w-[30%]">
+            <p className="mr-3 flex-1 md:flex-0 md:mr-0">Year</p>
             <select
               name="year"
               id="year"
               value={selectedYear}
-              className="border-2 rounded border-[#ffffff26] outline-0 mx-5"
+              className="border-2  flex-5 md:flex-1 rounded border-[#ffffff26] outline-0 w-full md:w-fit md:mx-3"
               onChange={checkSelectedYear}
             >
               {yearsList.map((year) => {
@@ -217,13 +218,15 @@ function AllMoviesPage(props) {
                 );
               })}
             </select>
-            <p className="mr-5">Genres : </p>
+          </div>
+          <div className="w-full flex items-center justify-center md:flex-row md:w-[30%]">
+            <p className="mr-3 flex-1 md:flex-0 md:mr-2">Genres </p>
             <select
               name="genre"
               id="genre"
               value={selectedGenres}
               onChange={checkSelectedGenres}
-              className="border-2 rounded border-[#ffffff26] outline-0"
+              className="border-2 flex-5 md:flex-1 rounded border-[#ffffff26] outline-0 w-full "
             >
               <option value="" className="text-black">
                 All
@@ -233,72 +236,16 @@ function AllMoviesPage(props) {
                 <option
                   value={gen.id}
                   id={gen.id}
-                  className=" text-black"
+                  className=" text-black w-fit"
                   key={gen.id}
                 >
                   {gen.name}
                 </option>
               ))}
             </select>
-            <p className="ml-3">
-              Page: {currPage} of {pageNo}
-            </p>
-            <button
-              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
-                currPage <= 1 ? "cursor-not-allowed" : "cursor-pointer"
-              }`}
-              onClick={() => {
-                if (currPage > 1) {
-                  setcurrPage(Number(currPage) - 1);
-                  sessionStorage.setItem("page", Number(currPage) - 1);
-                }
-              }}
-            >
-              Prev
-            </button>
-            <button
-              className={`px-5 border-1 rounded border-amber-50 mx-2 ${
-                currPage >= pageNo ? "cursor-not-allowed" : "cursor-pointer"
-              }`}
-              onClick={() => {
-                if (currPage < pageNo) {
-                  setcurrPage(Number(currPage) + 1);
-                  sessionStorage.setItem("page", Number(currPage) + 1);
-                }
-              }}
-            >
-              Next
-            </button>
           </div>
-
-          <div className=" grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
-            {movies.map((movie) => (
-              <div
-                key={movie.id}
-                className="w-full h-full hover:scale-[1.1] transition duration-150"
-              >
-                {/* <div
-                  key={movie.id}
-                  className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
-                > */}
-                <MovieCard
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.title}
-                  poster_path={
-                    movie.poster_path === null
-                      ? `/no-poster.jpg`
-                      : IMGPATH + movie.poster_path
-                  }
-                  release_date={movie.release_date}
-                  vote={movie.vote_average}
-                  lang={movie.original_language}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mb-20">
-            <p className="ml-3">
+          <div className="w-full flex items-center justify-center md:justify-end md:flex-row md:w-[50%]">
+            <p className="md:ml-3">
               Page: {currPage} of {pageNo}
             </p>
             <button
@@ -329,7 +276,66 @@ function AllMoviesPage(props) {
             </button>
           </div>
         </div>
+
+        <div className="grid grid-cols-2 gap-6 gap-y-5 mt-10 mb-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {movies.map((movie) => (
+            <div
+              key={movie.id}
+              className="w-full h-full hover:scale-[1.1] transition duration-150"
+            >
+              {/* <div
+                  key={movie.id}
+                  className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
+                > */}
+              <MovieCard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                poster_path={
+                  movie.poster_path === null
+                    ? `/no-poster.jpg`
+                    : IMGPATH + movie.poster_path
+                }
+                release_date={movie.release_date}
+                vote={movie.vote_average}
+                lang={movie.original_language}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mb-20">
+          <p className="ml-3">
+            Page: {currPage} of {pageNo}
+          </p>
+          <button
+            className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+              currPage <= 1 ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
+            onClick={() => {
+              if (currPage > 1) {
+                setcurrPage(Number(currPage) - 1);
+                sessionStorage.setItem("page", Number(currPage) - 1);
+              }
+            }}
+          >
+            Prev
+          </button>
+          <button
+            className={`px-5 border-1 rounded border-amber-50 mx-2 ${
+              currPage >= pageNo ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
+            onClick={() => {
+              if (currPage < pageNo) {
+                setcurrPage(Number(currPage) + 1);
+                sessionStorage.setItem("page", Number(currPage) + 1);
+              }
+            }}
+          >
+            Next
+          </button>
+        </div>
       </div>
+      {/* </div> */}
     </>
   );
 }
