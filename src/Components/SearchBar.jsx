@@ -15,7 +15,11 @@ function SearchBar() {
   // const allowedLanguages = ["hi", "en", "pa", "te", "ta", "ml", "kn"];
 
   useEffect(() => {
-    getSearchedItems();
+    const timer = setTimeout(getSearchedItems, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [searched]);
 
   const handleSearchResults = (e) => {

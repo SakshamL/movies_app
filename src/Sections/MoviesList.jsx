@@ -13,117 +13,87 @@ function MoviesList() {
   const newPage = 1;
 
   const [movies, setMovies] = useState([]);
+  const [moviesPa, setMoviesPa] = useState([]);
   const [moviesEn, setMoviesEn] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
 
-  useEffect(
-    () => {
-      getMovies();
-    },
-    [movies],
-    [moviesEn],
-  );
+  useEffect(() => {
+    getMovies();
+  }, []);
 
   const getMovies = async () => {
-    const response = await movieAPI.getHindiMovies(1); // 1 means Page number here..
+    const [hindiRes, englishRes, nowRes, punjabiRes] = await Promise.all([
+      movieAPI.getHindiMovies(1), // 1 means Page number here..
+      movieAPI.getEnglishMovies(1),
+      movieAPI.getNowPlaying(1),
+      movieAPI.getPunjabiMovies(1),
+    ]);
 
-    // const response = await fetch(movies_api + newPage + movies_api_2);
-    // const responseJSON = await response.json();
-    setMovies(response.results);
-    // console.log(response.results);
+    setMovies(hindiRes.results);
+    setMoviesPa(punjabiRes.results);
+    setMoviesEn(englishRes.results);
+    setNowPlaying(nowRes.results);
+  };
 
-    const responseEn = await movieAPI.getEnglishMovies(1);
-    // const response = await fetch(movies_api + newPage + movies_api_2);
-    setMoviesEn(responseEn.results);
+  const MediaRow = ({ heading, moreLink, mediaList }) => {
+    return (
+      <>
+        <div className="flex gap-5 justify-between items-center mt-10">
+          <h2 className="text-white font-bold text-xl">{heading}</h2>
+          <div className="flex-1 border-b-2 border-dotted opacity-50 border-gray-600 mb-1"></div>
+          <Link to={`${moreLink}`}>
+            <h2 className="text-[grey] font-bold text-[10pt] flex items-center gap-3">
+              More <FaArrowRight />
+            </h2>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
+          {mediaList.slice(0, 7).map((movie) => (
+            <div
+              key={movie.id}
+              className="w-full h-full hover:scale-[1.1] transition duration-150"
+            >
+              <MovieCard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                poster_path={
+                  movie.poster_path === null
+                    ? `/no-poster.jpg`
+                    : IMGPATH + movie.poster_path
+                }
+                release_date={movie.release_date.slice(0, 4)}
+                vote={movie.vote_average}
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    );
   };
 
   return (
     <>
-      {/* <div className="text-[black]  flex justify-center">
-        //{" "}
-        <button
-          className="bg-white cursor-pointer mt-10 p-2"
-          onClick={(e) => {
-            if (movies.length > 0) {
-              setNewPage(newPage + 1);
-              setprevpage(newPage);
-            }
-          }}
-        >
-          Page {newPage}
-        </button>
-      </div> */}
-      {/* ---------------------------------------------------------------------------------- */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-white font-bold text-2xl">Latest Hindi Movies</h2>
-        <Link to={`/movies/hindi`}>
-          <h2 className="text-[grey] font-bold text-[12pt] flex items-center gap-3">
-            Show More <FaArrowRight />{" "}
-          </h2>
-        </Link>
-      </div>
+      <MediaRow heading="Now Playing" moreLink="/" mediaList={nowPlaying} />
 
-      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
-      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
-        {movies.slice(0, 7).map((movie) => (
-          <div
-            key={movie.id}
-            className="w-full h-full hover:scale-[1.1] transition duration-150"
-          >
-            {/* <div
-            key={movie.id}
-            className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
-          > */}
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              poster_path={
-                movie.poster_path === null
-                  ? `/no-poster.jpg`
-                  : IMGPATH + movie.poster_path
-              }
-              release_date={movie.release_date.slice(0, 4)}
-              vote={movie.vote_average}
-            />
-          </div>
-        ))}
-      </div>
+      <MediaRow
+        heading="Blockbuster Hindi Movies"
+        moreLink="/movies/hindi"
+        mediaList={movies}
+      />
 
-      {/* ---------------------------------------------------------------------------------- */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-white font-bold text-2xl">Latest English Movies</h2>
-        <Link to={`/movies/english`}>
-          <h2 className="text-[grey] font-bold text-[12pt] flex items-center gap-3">
-            Show More <FaArrowRight />{" "}
-          </h2>
-        </Link>
-      </div>
-      {/* <div className="flex flex-wrap gap-4 mt-10 mb-10  "> */}
-      <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
-        {moviesEn.slice(0, 7).map((movie) => (
-          <div
-            key={movie.id}
-            className="w-full h-full hover:scale-[1.1] transition duration-150"
-          >
-            {/* <div
-            key={movie.id}
-            className="w-[15%] h-[15%]  hover:scale-[1.1] transition duration-100"
-          > */}
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              poster_path={
-                movie.poster_path === null
-                  ? `/no-poster.jpg`
-                  : IMGPATH + movie.poster_path
-              }
-              release_date={movie.release_date.slice(0, 4)}
-              vote={movie.vote_average}
-            />
-          </div>
-        ))}
-      </div>
+      <MediaRow
+        heading="English Movies to watch"
+        moreLink="/movies/english"
+        mediaList={moviesEn}
+      />
+
+      <MediaRow
+        heading="Latest Punjabi Movies"
+        moreLink="/movies/punabi"
+        mediaList={moviesPa}
+      />
     </>
   );
 }

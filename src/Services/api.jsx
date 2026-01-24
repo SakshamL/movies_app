@@ -45,6 +45,7 @@ const formatDate = (date) => date.toISOString().split("T")[0];
 const languages = ["hi", "en", "pa", "te", "ta", "ml", "kn"].join("|");
 const langHindi = "hi";
 const langEng = "en";
+const langPunjabi = "pa";
 const releaseTypes = "2|3|4";
 
 export const movieAPI = {
@@ -64,6 +65,12 @@ export const movieAPI = {
       )}&release_date.lte=${formatDate(today)}&sort_by=popularity.desc`,
     ),
 
+  getPunjabiMovies: (page = 1) =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&page=${page}&region=IN&with_release_type=${releaseTypes}&with_original_language=${langPunjabi}&release_date.lte=${formatDate(today)}&sort_by=release_date.desc`,
+    ),
+
   getFeaturedMovies: () =>
     fetchFromTMDB(
       "/discover/movie",
@@ -81,13 +88,21 @@ export const movieAPI = {
   getAllHindiMovies: (page = 1, gen = "", year = "") =>
     fetchFromTMDB(
       "/discover/movie",
-      `&region=IN&&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=hi&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
+      `&region=IN&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=hi&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
     ),
 
   getAllEnglishMovies: (page = 1, gen = "", year = "") =>
     fetchFromTMDB(
       "/discover/movie",
       `&region=IN&&sort_by=popularity.desc&primary_release_date.lte=${todayFullDate}&with_original_language=en&primary_release_year=${year}&page=${page}&with_genres=${gen}`,
+    ),
+
+  getNowPlaying: (page = 1) =>
+    fetchFromTMDB(
+      "/discover/movie",
+      `&region=IN&sort_by=popularity.desc&with_release_type=3&with_original_language=${langHindi}&release_date.gte=${formatDate(
+        startDate,
+      )}&release_date.lte=${formatDate(today)}&language=en-US`,
     ),
 
   getMovieDetails: (id = "") => fetchFromTMDB(`/movie/${id}`, ``),
