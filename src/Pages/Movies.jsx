@@ -7,12 +7,12 @@ import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import AllMoviesPage from "./AllMoviesPage";
-// import ShowMorePage from "./ShowMorePage";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 function Movies(props) {
   const { id } = useParams();
+  const { title } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [cast, setCast] = useState([]);
   const [movieCert, setMovieCert] = useState("");
@@ -175,7 +175,7 @@ function Movies(props) {
                     </h2>
                     <div className="flex items-center justify-between md:mb-5 md:mt-20 ">
                       <h2 className="md:text-2xl md:font-semibold ">Cast</h2>
-                      <Link>
+                      <Link to={`/movie/${id}/${title}/cast`}>
                         <h3 className="text-[#3668e8] text-[18px] md:font-bold">
                           See All
                         </h3>

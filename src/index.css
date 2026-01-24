@@ -41,7 +41,7 @@ a {
 }
 
 .navbar-menu-items {
-  @apply p-3 pl-10 pr-10 cursor-pointer rounded hover:bg-[#382d52] transition duration-300;
+  @apply py-3 px-5 cursor-pointer rounded hover:bg-[#382d52] transition duration-300;
 }
 
 .responsive-navbar {

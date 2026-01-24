@@ -48,7 +48,7 @@ function SearchBar() {
         id="search"
         type="text"
         placeholder="Search Movies and TV Shows"
-        className="rounded-[10px] w-full outline-0 border-2 p-3 pl-5 border-[#8080803b] text-[grey]"
+        className="rounded-[5px] w-full outline-0 border-2 p-3 pl-5 border-[#8080803b] text-[grey]"
         onChange={handleSearchResults}
         value={searched}
       />

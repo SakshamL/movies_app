@@ -17,8 +17,8 @@ function Navbar() {
   }
 
   return (
-    <div className="flex items-center mt-5 lg:justify-between">
-      <Link to="/" className="w-[200px] ml-[3%] md:w-[250px]  cursor-pointer">
+    <div className="flex items-center mt-3 lg:justify-between">
+      <Link to="/" className="w-[200px] ml-[3%]   cursor-pointer">
         <img src="/logo.png" alt="logo" />
       </Link>
       <div

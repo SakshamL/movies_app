@@ -5,8 +5,10 @@ const FeaturedMoviesCards = (props) => {
   const page_no = 1;
 
   return (
-    <Link to={`/movie/${props.id}/${props.title.toLowerCase().replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")}`}>
-      <div className="featuredcards relative w-full h-full hover:scale-[1.05] duration-200 ease-in-out overflow-hidden ">
+    <Link
+      to={`/movie/${props.id}/${props.title.toLowerCase().replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")}`}
+    >
+      <div className="featuredcards relative w-full h-full hover:scale-[1.05] duration-200 ease-in-out overflow-hidden  ">
         <img
           src={props.backdrop}
           alt={props.title}
