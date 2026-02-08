@@ -133,22 +133,21 @@ function Movies(props) {
                             " "}
                         </h2>
                       </div>
-                      <div className="flex flex-wrap gap-2 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 lg:justify-start">
-                        {movieDetails.genres
-                          ? movieDetails.genres.map((genre) => {
-                              return (
-                                <Link key={genre.id}>
-                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-3 lg:px-5 rounded-[10px]">
-                                    {genre.name}
-                                  </p>
-                                </Link>
-                              );
-                            })
-                          : ""}
-                      </div>
                     </div>
                   </div>
-
+                  <div className="flex flex-wrap gap-2 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 justify-center lg:justify-start">
+                    {movieDetails.genres
+                      ? movieDetails.genres.map((genre) => {
+                          return (
+                            <Link key={genre.id}>
+                              <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-3 lg:px-5 rounded-[10px]">
+                                {genre.name}
+                              </p>
+                            </Link>
+                          );
+                        })
+                      : ""}
+                  </div>
                   <div className="flex justify-center lg:justify-start gap-4 mb-8 mt-5 lg:mt-10">
                     <Link to={`/movie/${movieDetails.id}/watch`}>
                       <h2 className="bg-[#2046a6] w-fit rounded-[10px] cursor-pointer px-7 py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100 ">
