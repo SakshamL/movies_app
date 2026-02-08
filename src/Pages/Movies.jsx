@@ -92,11 +92,11 @@ function Movies(props) {
               <div className="absolute top-[15%] w-[90%] brightness-[1]">
                 <div className="text-white md:ml-[10px] mt-45 md:mt-50">
                   <div className="flex lg:block">
-                    <div className="mb-3 w-[40%] flex-1">
+                    <div className="mb-3 w-[40%] flex-1 -ml-2">
                       <img
                         src={IMGPATH + movieDetails.poster_path}
                         alt={movieDetails.title}
-                        className="lg:hidden md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
+                        className="lg:hidden max-sm:h-[103%] md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
                       />
                     </div>
                     <div className="flex-2">
@@ -133,22 +133,23 @@ function Movies(props) {
                             " "}
                         </h2>
                       </div>
+                      <div className="flex flex-wrap gap-2 krub-regular text-[10px] lg:text-[14px] mt-5 ml-3 lg:ml-0">
+                        {movieDetails.genres
+                          ? movieDetails.genres.map((genre) => {
+                              return (
+                                <Link key={genre.id}>
+                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-2 lg:px-5 rounded-[10px]">
+                                    {genre.name}
+                                  </p>
+                                </Link>
+                              );
+                            })
+                          : ""}
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 justify-center lg:justify-start">
-                    {movieDetails.genres
-                      ? movieDetails.genres.map((genre) => {
-                          return (
-                            <Link key={genre.id}>
-                              <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-3 lg:px-5 rounded-[10px]">
-                                {genre.name}
-                              </p>
-                            </Link>
-                          );
-                        })
-                      : ""}
-                  </div>
-                  <div className="flex justify-center lg:justify-start gap-4 mb-8 mt-5 lg:mt-10">
+
+                  <div className="flex justify-center lg:justify-start gap-4 mb-5 mt-5 lg:mt-10">
                     <Link to={`/movie/${movieDetails.id}/watch`}>
                       <h2 className="bg-[#2046a6] w-fit rounded-[10px] cursor-pointer px-7 py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100 ">
                         PLAY NOW
