@@ -100,7 +100,7 @@ function Movies(props) {
                       />
                     </div>
                     <div className="flex-2">
-                      <h2 className="ml-3 lg:ml-0 text-2xl lg:text-start font-bold mb-3 md:text-6xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
+                      <h2 className="ml-3 lg:ml-0 text-[120%] lg:text-start font-bold mb-3 md:text-6xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
                         {movieDetails.title}
                       </h2>
                       <div className=" krub-regular text-[14px] md:text-[18px] flex flex-wrap gap-3 items-center ml-3 lg:ml-0 lg:justify-start">
