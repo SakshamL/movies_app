@@ -96,7 +96,7 @@ function Movies(props) {
                       <img
                         src={IMGPATH + movieDetails.poster_path}
                         alt={movieDetails.title}
-                        className="lg:hidden max-sm:h-[103%] md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
+                        className="lg:hidden md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
                       />
                     </div>
                     <div className="flex-2">
@@ -133,7 +133,7 @@ function Movies(props) {
                             " "}
                         </h2>
                       </div>
-                      <div className="flex flex-wrap gap-2 krub-regular text-[10px] lg:text-[14px] mt-5 ml-3 lg:ml-0">
+                      <div className="flex flex-wrap gap-2 krub-regular max-sm:text-[10px]/2.5 lg:text-[14px] mt-3 ml-3 lg:ml-0">
                         {movieDetails.genres
                           ? movieDetails.genres.map((genre) => {
                               return (
