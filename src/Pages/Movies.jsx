@@ -133,7 +133,7 @@ function Movies(props) {
                             " "}
                         </h2>
                       </div>
-                      <div className="flex gap-3 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 lg:justify-start">
+                      <div className="flex flex-wrap gap-2 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 lg:justify-start">
                         {movieDetails.genres
                           ? movieDetails.genres.map((genre) => {
                               return (
