@@ -85,22 +85,22 @@ function Movies(props) {
             <img
               src={IMGPATH + movieDetails.backdrop_path}
               alt=""
-              className="rounded-xl md:h-[80vh] md:w-[100vw] backdrop-mask-gradient"
+              className="rounded-xl md:w-[100vw] backdrop-mask-gradient"
               // className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
             />
             <div className="flex justify-center">
               <div className="absolute top-[15%] w-[90%] brightness-[1]">
-                <div className="text-white md:ml-[10px] mt-45 md:mt-50">
+                <div className="text-white md:ml-[10px] mt-35 md:mt-50">
                   <div className="flex lg:block">
-                    <div className="mb-3 w-[40%] flex-1 -ml-2">
+                    <div className="mb-3 w-[40%] flex-4 -ml-2">
                       <img
                         src={IMGPATH + movieDetails.poster_path}
                         alt={movieDetails.title}
                         className="lg:hidden md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
                       />
                     </div>
-                    <div className="flex-2">
-                      <h2 className="ml-3 lg:ml-0 text-[120%] lg:text-start font-bold mb-3 md:text-6xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
+                    <div className="flex-5">
+                      <h2 className="ml-3 lg:ml-0 text-[104%] lg:text-start font-bold mb-3 md:text-4xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
                         {movieDetails.title}
                       </h2>
                       <div className=" krub-regular text-[14px] md:text-[18px] flex flex-wrap gap-3 items-center ml-3 lg:ml-0 lg:justify-start">
@@ -133,12 +133,12 @@ function Movies(props) {
                             " "}
                         </h2>
                       </div>
-                      <div className="flex flex-wrap gap-2 krub-regular max-sm:text-[10px]/2.5 lg:text-[14px] mt-3 ml-3 lg:ml-0">
+                      <div className="flex flex-wrap gap-2 krub-regular max-sm:text-[10px]/2.5 md:text-[13px] mt-3 ml-3 lg:ml-0">
                         {movieDetails.genres
                           ? movieDetails.genres.map((genre) => {
                               return (
                                 <Link key={genre.id}>
-                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-2 lg:px-5 rounded-[10px]">
+                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-0.5 px-2 md:px-4 lg:px-5 rounded-[10px]">
                                     {genre.name}
                                   </p>
                                 </Link>
