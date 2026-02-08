@@ -79,137 +79,144 @@ function Movies(props) {
     return (
       <>
         <title>{movieDetails.title + " - WatchAll"}</title>
-        <div className="text-white flex flex-col w-full ml-[4%] mr-[4%]">
+        <div className="text-white flex flex-col w-full">
           {/* <SearchBar /> */}
-          <div className="relative mt-10">
+          <div className="relative -mt-10">
             <img
               src={IMGPATH + movieDetails.backdrop_path}
               alt=""
-              className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
+              className="rounded-xl md:h-[80vh] md:w-[100vw] backdrop-mask-gradient"
+              // className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
             />
-            <div className="absolute top-[15%] left-20 brightness-[1] md:flex md:items-start">
-              {/* <img
-                src={IMGPATH + movieDetails.poster_path}
-                alt={movieDetails.title}
-                className="w-50 md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
-              /> */}
-              <div className="text-white ml-[30px] mt-50">
-                <h2 className="md:text-6xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
-                  {movieDetails.title}
-                </h2>
-                <div className="krub-regular text-[18px] flex gap-3 items-center">
-                  <div className="flex items-center gap-1 text-[#ffca28] font-bold">
-                    {movieDetails.vote_average
-                      ? movieDetails.vote_average.toFixed(2)
-                      : null}
-                    <img
-                      src="/star.png"
-                      alt="star"
-                      className="w-[20px] h-full mt-[-3px]"
-                    />
-                  </div>
-                  <h2 className="krub-regular ">
-                    {movieDetails.release_date
-                      ? movieDetails.release_date.substring(0, 4)
-                      : null}
-                  </h2>
-                  <div className="border py-[0.5px] px-2 rounded font-bold text-[10pt]">
-                    {movieCert}
-                  </div>
-                  <h2>
-                    {Math.trunc(movieDetails.runtime / 60).toString() +
-                      "h " +
-                      ((movieDetails.runtime / 60) % 1)
-                        .toString()
-                        .substring(2, 3) *
-                        6 +
-                      "m" +
-                      " "}
-                  </h2>
-                </div>
-
-                <div className="flex gap-4 mb-8">
-                  <Link to={`/movie/${movieDetails.id}/watch`}>
-                    {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
-
-                    <h2 className="bg-[#2046a6] w-fit rounded-[10px] cursor-pointer px-7 py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold mt-5 hover:scale-[1.1] duration-100">
-                      PLAY NOW
-                    </h2>
-                  </Link>
-
-                  <Link
-                    to={`https://www.youtube.com/watch?v=${trailer}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* <h2 className="rounded-[14px] cursor-pointer px-6 py-2 shadow-lg uppercase font-semibold bg-[#7C02FF] shadow-purple-400/50"></h2> */}
-
-                    <h2
-                      className="bg-[#cd0003bc] w-fit rounded-[10px] cursor-pointer px-5 py-3 shadow-[0px_0px_5px_0px_rgba(205,_0,_3,_1)] font-normal  mt-5 uppercase"
-                      onClick={() => {}}
-                    >
-                      Trailer
-                    </h2>
-                  </Link>
-                </div>
-                <div className="flex gap-3 krub-regular text-[14px] mt-5 ">
-                  {movieDetails.genres
-                    ? movieDetails.genres.map((genre) => {
-                        return (
-                          <Link key={genre.id}>
-                            <p className="bg-[#1b202800] border-[2px] border-[#4f75c157] md:pt-1 md:pb-1 md:pr-5 md:pl-5 md:rounded-[10px]">
-                              {genre.name}
-                            </p>
-                          </Link>
-                        );
-                      })
-                    : ""}
-                </div>
-                <div className="flex gap-10">
-                  <div className="flex-6">
-                    <h2 className="md:text-2xl md:font-semibold md:mb-4 md:mt-10">
-                      Synopsis
-                    </h2>
-                    <h2 className="text-[#ffffff7c] text-[18px] md:font-normal md:mb-4 md:mt-5">
-                      {movieDetails.overview}
-                    </h2>
-                    <div className="flex items-center justify-between md:mb-5 md:mt-20 ">
-                      <h2 className="md:text-2xl md:font-semibold ">Cast</h2>
-                      <Link to={`/movie/${id}/${title}/cast`}>
-                        <h3 className="text-[#3668e8] text-[18px] md:font-bold">
-                          See All
-                        </h3>
-                      </Link>
+            <div className="flex justify-center">
+              <div className="absolute top-[15%] w-[90%] brightness-[1]">
+                <div className="text-white md:ml-[10px] mt-45 md:mt-50">
+                  <div className="flex lg:block">
+                    <div className="mb-3 w-[40%] flex-1">
+                      <img
+                        src={IMGPATH + movieDetails.poster_path}
+                        alt={movieDetails.title}
+                        className="lg:hidden md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
+                      />
                     </div>
-
-                    <div className="mb-20 scrollhide">
-                      <div className="grid md:grid-cols-6  gap-4">
-                        {cast.slice(0, 12).map((casting) => (
-                          <div
-                            key={casting.id}
-                            className=" hover:scale-[1.1] duration-100"
-                          >
-                            <CastCard
-                              key={casting.id}
-                              image={
-                                casting.profile_path === null
-                                  ? `/no-poster.jpg`
-                                  : IMGPATH + casting.profile_path
-                              }
-                              name={casting.name}
-                              char={casting.character}
-                            />
-                          </div>
-                        ))}
+                    <div className="flex-2">
+                      <h2 className="ml-3 lg:ml-0 text-2xl lg:text-start font-bold mb-3 md:text-6xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
+                        {movieDetails.title}
+                      </h2>
+                      <div className=" krub-regular text-[14px] md:text-[18px] flex flex-wrap gap-3 items-center ml-3 lg:ml-0 lg:justify-start">
+                        <div className="flex items-center gap-1 text-[#ffca28] font-bold">
+                          {movieDetails.vote_average
+                            ? movieDetails.vote_average.toFixed(2)
+                            : null}
+                          <img
+                            src="/star.png"
+                            alt="star"
+                            className="w-[14px] md:w-[20px] h-full -mt-[3px]"
+                          />
+                        </div>
+                        <h2 className="krub-regular ">
+                          {movieDetails.release_date
+                            ? movieDetails.release_date.substring(0, 4)
+                            : null}
+                        </h2>
+                        <div className="border py-[0.5px] px-2 rounded font-bold text-[8pt] md:text-[10pt]">
+                          {movieCert}
+                        </div>
+                        <h2>
+                          {Math.trunc(movieDetails.runtime / 60).toString() +
+                            "h " +
+                            ((movieDetails.runtime / 60) % 1)
+                              .toString()
+                              .substring(2, 3) *
+                              6 +
+                            "m" +
+                            " "}
+                        </h2>
+                      </div>
+                      <div className="flex gap-3 krub-regular text-[11px] lg:text-[14px] mt-5 ml-3 lg:ml-0 lg:justify-start">
+                        {movieDetails.genres
+                          ? movieDetails.genres.map((genre) => {
+                              return (
+                                <Link key={genre.id}>
+                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-1 px-3 lg:px-5 rounded-[10px]">
+                                    {genre.name}
+                                  </p>
+                                </Link>
+                              );
+                            })
+                          : ""}
                       </div>
                     </div>
                   </div>
-                  <div className="flex-2 -mt-30">
-                    <img
-                      src={IMGPATH + movieDetails.poster_path}
-                      alt={movieDetails.title}
-                      className="w-50 md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
-                    />
+
+                  <div className="flex justify-center lg:justify-start gap-4 mb-8 mt-5 lg:mt-10">
+                    <Link to={`/movie/${movieDetails.id}/watch`}>
+                      <h2 className="bg-[#2046a6] w-fit rounded-[10px] cursor-pointer px-7 py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100 ">
+                        PLAY NOW
+                      </h2>
+                    </Link>
+
+                    <Link
+                      to={`https://www.youtube.com/watch?v=${trailer}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <h2
+                        className="bg-[#cd0003bc] w-fit rounded-[10px] cursor-pointer px-5 py-3 shadow-[0px_0px_5px_0px_rgba(205,_0,_3,_1)] font-normal uppercase"
+                        onClick={() => {}}
+                      >
+                        Trailer
+                      </h2>
+                    </Link>
+                  </div>
+
+                  {/* ----------------------------------------------------------------------------------------------- */}
+                  <div className="flex flex-col lg:flex-row gap-10 -ml-5">
+                    <div className="lg:flex-6">
+                      <h2 className="text-xl lg:text-2xl font-bold mb-4 mt-5">
+                        Synopsis
+                      </h2>
+                      <h2 className="text-[#ffffff7c] text-[17px] lg:text-[18px] font-normal mb-4 md:mt-5">
+                        {movieDetails.overview}
+                      </h2>
+                      <div className="flex items-center justify-between mb-5 mt-10 lg:mt-20 ">
+                        <h2 className="text-xl font-bold ">Cast</h2>
+                        <Link to={`/movie/${id}/${title}/cast`}>
+                          <h3 className="text-[#3668e8] text-[18px] md:font-bold">
+                            See All
+                          </h3>
+                        </Link>
+                      </div>
+
+                      <div className="mb-20 scrollhide">
+                        <div className="grid grid-cols-3 md:grid-cols-6  gap-4">
+                          {cast.slice(0, 6).map((casting) => (
+                            <div
+                              key={casting.id}
+                              className=" hover:scale-[1.1] duration-100"
+                            >
+                              <CastCard
+                                key={casting.id}
+                                image={
+                                  casting.profile_path === null
+                                    ? `/no-poster.jpg`
+                                    : IMGPATH + casting.profile_path
+                                }
+                                name={casting.name}
+                                char={casting.character}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex-2 -mt-30 hidden lg:block">
+                      <img
+                        src={IMGPATH + movieDetails.poster_path}
+                        alt={movieDetails.title}
+                        className="w-50 md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
