@@ -20,39 +20,42 @@ const GetFeaturedMovies = () => {
     getTopMovies();
   }, []);
 
-  useEffect(() => {
-    getTopMovies();
-  }, []);
+  // useEffect(() => {
+  //   getTopMovies();
+  // }, []);
 
   const getTopMovies = async () => {
-    const response = await movieAPI.getFeaturedMovies();
-    // top_rated_movies_1 + page_no + top_rated_movies_2
+    const cachedData = sessionStorage.getItem("featured_movies");
+    if (cachedData) {
+      // Logic: If cache exists, use it
+      setTopMovies(JSON.parse(cachedData));
+    } else {
+      const response = await movieAPI.getFeaturedMovies();
+      // 1. Get the first 3 movies from the initial list
+      const firstThree = response.results.slice(0, 4);
 
-    // const responseJSON = await reponse.json();
+      // 2. Map through those 3 and fetch their specific backdrop images
+      const enrichedMovies = await Promise.all(
+        firstThree.map(async (movie) => {
+          const imageRes = await fetch(bg_path_1 + movie.id + bg_path_2);
+          const imageData = await imageRes.json();
 
-    // 1. Get the first 3 movies from the initial list
-    const firstThree = response.results.slice(0, 4);
+          // 3. Pick the first backdrop from the results, or fallback to the default if empty
+          const customBackdrop =
+            imageData.backdrops && imageData.backdrops[0]
+              ? imageData.backdrops[0].file_path
+              : movie.backdrop_path;
 
-    // 2. Map through those 3 and fetch their specific backdrop images
-    const enrichedMovies = await Promise.all(
-      firstThree.map(async (movie) => {
-        const imageRes = await fetch(bg_path_1 + movie.id + bg_path_2);
-        const imageData = await imageRes.json();
+          return {
+            ...movie,
+            custom_backdrop: customBackdrop,
+          };
+        }),
+      );
+      sessionStorage.setItem("featured_movies", JSON.stringify(enrichedMovies));
+      setTopMovies(enrichedMovies);
+    }
 
-        // 3. Pick the first backdrop from the results, or fallback to the default if empty
-        const customBackdrop =
-          imageData.backdrops && imageData.backdrops[0]
-            ? imageData.backdrops[0].file_path
-            : movie.backdrop_path;
-
-        return {
-          ...movie,
-          custom_backdrop: customBackdrop,
-        };
-      })
-    );
-
-    setTopMovies(enrichedMovies);
     // setTopMovies(responseJSON.results);
   };
 
