@@ -26,10 +26,16 @@ const VideoPlayer = () => {
         src={`https://player.vidplus.to/embed/movie/${id}?autoplay=true&autonext=true&nextbutton=true&poster=true&title=true&watchparty=false&chromecast=false&servericon=true&icons=vid&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF`}
         allowfullscreen="true"
       ></iframe> */}
+        {/* <iframe
+          width="100%"
+          height="100%"
+          src={`https://vidfast.pro/movie/${id}?autoPlay=false&server=Bollywood`}
+          allowFullscreen="true"
+        ></iframe> */}
         <iframe
           width="100%"
           height="100%"
-          src={`https://vidfast.pro/movie/${id}?autoPlay=true&server=Bollywood`}
+          src={`https://vidcore.net/movie/${id}`}
           allowFullscreen="true"
         ></iframe>
       </div>
