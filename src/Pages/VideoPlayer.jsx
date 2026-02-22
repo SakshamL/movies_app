@@ -43,6 +43,7 @@ const VideoPlayer = () => {
           height="100%"
           src={`https://www.vidking.net/embed/movie/${id}?color=ff0000&autoPlay=true`}
           allowFullscreen="true"
+          sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
         ></iframe>
       </div>
     </>
