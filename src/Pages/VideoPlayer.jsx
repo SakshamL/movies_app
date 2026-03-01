@@ -38,12 +38,18 @@ const VideoPlayer = () => {
           src={`https://vidcore.net/movie/${id}`}
           allowFullscreen="true"
         ></iframe> */}
-        <iframe
+        {/* <iframe
           width="100%"
           height="100%"
           src={`https://www.vidking.net/embed/movie/${id}?color=ff0000&autoPlay=true`}
           allowFullscreen="true"
           sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+        ></iframe> */}
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://vidnest.fun/movie/${id}?color=ff0000&autoPlay=true`}
+          allowFullscreen="true"
         ></iframe>
       </div>
     </>
