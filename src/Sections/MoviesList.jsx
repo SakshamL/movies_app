@@ -48,8 +48,8 @@ function MoviesList() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mt-10 mb-10 md:grid-cols-4 lg:grid-cols-7 ">
-          {mediaList.slice(0, 7).map((movie) => (
+        <div className="grid grid-cols-3 gap-2 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+          {mediaList.slice(0, 6).map((movie) => (
             <div
               key={movie.id}
               className="w-full h-full hover:scale-[1.1] transition duration-150"
