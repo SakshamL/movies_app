@@ -48,7 +48,7 @@ function MoviesList() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        <div className="grid grid-cols-3 gap-1.5 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
           {mediaList.slice(0, 6).map((movie) => (
             <div
               key={movie.id}

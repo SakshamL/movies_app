@@ -17,32 +17,34 @@ function MovieCard(props) {
         />
 
         <p
-          className={`text-white absolute left-[10px] bottom-[25px] ${
-            props.searchedCard ? "text-[70%]" : "text-[90%]"
+          className={` text-white absolute left-[10px] bottom-[25px] ${
+            props.searchedCard ? "text-[70%]" : "text-[75%] sm:text-[90%]"
           } font-bold font-inter`}
         >
-          {props.title}
+          {props.title.length > 18
+            ? props.title.substr(0, 18) + ".."
+            : props.title}
         </p>
         <p
           className={`text-white absolute left-[10px] bottom-[5px] ${
-            props.searchedCard ? "text-[60%]" : "text-[90%]"
+            props.searchedCard ? "text-[60%]" : "text-[75%] sm:text-[90%]"
           } font-inria-sans`}
         >
           {props.release_date ? props.release_date.slice(0, 4) : null}
 
           {props.media_type}
         </p>
-        <div className="absolute top-1 right-1 bg-[#4c1fb6] font-bold text-white text-[10pt]  rounded py-0 px-1">
+        <div className="absolute top-1 right-1 bg-[#4c1fb6] font-bold text-white text-[8pt] sm:text-[10pt]  rounded py-0 px-1">
           {props.lang}
         </div>
-        <p className="text-white absolute right-[10px] bottom-[5px] text-[90%] font-inria-sans flex items-center">
+        {/* <p className="text-white absolute right-[10px] bottom-[5px] text-[75%] font-inria-sans flex items-center">
           {props.vote ? (
             <>
               {props.vote.toFixed(2)}
-              <img src="/star.png" alt="star" className="w-[15px] h-full" />
+              <img src="/star.png" alt="star" className="w-[10px] h-full" />
             </>
           ) : null}
-        </p>
+        </p> */}
       </div>
     </NavLink>
   );
