@@ -39,7 +39,7 @@ function MoviesList() {
     return (
       <>
         <div className="flex gap-5 justify-between items-center mt-10">
-          <h2 className="text-white font-bold text-xl">{heading}</h2>
+          <h2 className="text-white font-bold text-md md:text-xl">{heading}</h2>
           <div className="flex-1 border-b-2 border-dotted opacity-50 border-gray-600 mb-1"></div>
           <Link to={`${moreLink}`}>
             <h2 className="text-[grey] font-bold text-[10pt] flex items-center gap-3">
@@ -48,11 +48,11 @@ function MoviesList() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 gap-1.5 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+        <div className="grid grid-cols-3 gap-1.5 lg:gap-4 mt-10 mb-10 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
           {mediaList.slice(0, 6).map((movie) => (
             <div
               key={movie.id}
-              className="w-full h-full hover:scale-[1.1] transition duration-150"
+              className="w-full h-full hover:scale-[1.1] hover:z-100 transition duration-150"
             >
               <MovieCard
                 key={movie.id}
@@ -63,7 +63,7 @@ function MoviesList() {
                     ? `/no-poster.jpg`
                     : IMGPATH + movie.poster_path
                 }
-                release_date={movie.release_date.slice(0, 4)}
+                // release_date={movie.release_date.slice(0, 4)}
                 vote={movie.vote_average}
               />
             </div>

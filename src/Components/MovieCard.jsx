@@ -17,7 +17,7 @@ function MovieCard(props) {
         />
 
         <p
-          className={` text-white absolute left-[10px] bottom-[25px] ${
+          className={` text-white absolute left-[3px] bottom-[10px] ${
             props.searchedCard ? "text-[70%]" : "text-[75%] sm:text-[90%]"
           } font-bold font-inter`}
         >

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
+
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 function Navbar() {
+  const location = useLocation();
   const [clicked, setClicked] = useState(false);
 
   function handleResNavbar() {
@@ -22,7 +24,7 @@ function Navbar() {
         <img src="/logo.png" alt="logo" />
       </Link>
       <div
-        className="text-white lg:hidden text-2xl cursor-pointer z-20 absolute right-5 top-10"
+        className={`text-white ${location.pathname.endsWith("/watch") ? "hidden" : "block"} lg:hidden text-2xl cursor-pointer z-20 absolute right-5 top-10`}
         onClick={handleResNavbar}
       >
         {!clicked ? <AiOutlineMenu /> : <AiOutlineClose />}

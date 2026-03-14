@@ -284,7 +284,7 @@ function AllMoviesPage(props) {
                     ? `/no-poster.jpg`
                     : IMGPATH + movie.poster_path
                 }
-                release_date={movie.release_date}
+                // release_date={movie.release_date}
                 vote={movie.vote_average}
                 lang={movie.original_language}
               />
