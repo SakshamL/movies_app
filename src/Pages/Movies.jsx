@@ -220,14 +220,46 @@ function Movies(props) {
                       : ""}
                   </div>
                   {/* ----------------------------------------------------------------------------------------------- */}
-                  <div className="flex flex-col lg:flex-row gap-10 -ml-2 -mr-2 max-lg:border max-lg:border-[#2b417a69] max-lg:bg-[#0a0f22d1] mt-5 max-lg:rounded-lg px-3 py-2">
-                    <div className="lg:flex-6 lg:border lg:rounded-lg lg:border-[#2b417a69] lg:bg-[#0a0f22d1] lg:px-5 lg:py-3 lg:h-fit">
-                      <h2 className="text-xl lg:text-2xl font-bold mb-4">
-                        Synopsis
-                      </h2>
-                      <h2 className="text-[#ffffff7c] text-[17px] lg:text-[18px] font-normal mb-4 md:mt-5">
-                        {movieDetails.overview}
-                      </h2>
+                  <div className="flex flex-col lg:flex-row gap-10 -ml-2 -mr-2 mt-5">
+                    <div className="flex-6">
+                      <div className="border rounded-lg border-[#2b417a69] bg-[#0a0f22d1] px-5 py-3 h-fit">
+                        <h2 className="text-xl lg:text-2xl font-bold mb-4">
+                          Synopsis
+                        </h2>
+                        <h2 className="text-[#ffffff7c] text-[17px] lg:text-[18px] font-normal mb-4 md:mt-5">
+                          {movieDetails.overview}
+                        </h2>
+                      </div>
+                      <div className="flex items-center justify-between mb-5 mt-10 lg:mt-20 ">
+                        <h2 className="text-xl font-bold ">Cast</h2>
+                        <Link to={`/movie/${id}/${title}/cast`}>
+                          <h3 className="text-[#3668e8] text-[18px] md:font-bold">
+                            See All
+                          </h3>
+                        </Link>
+                      </div>
+
+                      <div className="mb-20 scrollhide">
+                        <div className="grid grid-cols-3 md:grid-cols-6  gap-4">
+                          {cast.slice(0, 6).map((casting) => (
+                            <div
+                              key={casting.id}
+                              className=" hover:scale-[1.1] duration-100"
+                            >
+                              <CastCard
+                                key={casting.id}
+                                image={
+                                  casting.profile_path === null
+                                    ? `/no-poster.jpg`
+                                    : IMGPATH + casting.profile_path
+                                }
+                                name={casting.name}
+                                char={casting.character}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                     <div className="flex-2 -mt-30 hidden lg:block">
                       <img
@@ -235,36 +267,6 @@ function Movies(props) {
                         alt={movieDetails.title}
                         className="w-50 md:w-60 rounded-2xl shadow-[6px_9px_19px_1px_rgba(0,_0,_0,_0.5)]"
                       />
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between mb-5 mt-10 lg:mt-20 ">
-                    <h2 className="text-xl font-bold ">Cast</h2>
-                    <Link to={`/movie/${id}/${title}/cast`}>
-                      <h3 className="text-[#3668e8] text-[18px] md:font-bold">
-                        See All
-                      </h3>
-                    </Link>
-                  </div>
-
-                  <div className="mb-20 scrollhide">
-                    <div className="grid grid-cols-3 md:grid-cols-6  gap-4">
-                      {cast.slice(0, 6).map((casting) => (
-                        <div
-                          key={casting.id}
-                          className=" hover:scale-[1.1] duration-100"
-                        >
-                          <CastCard
-                            key={casting.id}
-                            image={
-                              casting.profile_path === null
-                                ? `/no-poster.jpg`
-                                : IMGPATH + casting.profile_path
-                            }
-                            name={casting.name}
-                            char={casting.character}
-                          />
-                        </div>
-                      ))}
                     </div>
                   </div>
                 </div>
