@@ -81,7 +81,7 @@ function Movies(props) {
         <title>{movieDetails.title + " - WatchAll"}</title>
         <div className="text-white flex flex-col w-full">
           {/* <SearchBar /> */}
-          <div className="relative -mt-10">
+          <div className="relative -mt-0">
             <img
               src={IMGPATH + movieDetails.backdrop_path}
               alt=""
@@ -104,30 +104,78 @@ function Movies(props) {
                         {movieDetails.title}
                       </h2>
 
-                      <div className="flex flex-col md:flex-row justify-center lg:justify-start gap-4 mb-5 ml-3 md:ml-0 mt-5 md:mt-5 lg:mt-10">
-                        <Link to={`/movie/${movieDetails.id}/watch`}>
-                          <h2 className="bg-[#2046a6] w-full md:w-fit rounded-[10px] cursor-pointer px-7 py-2  md:py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100 ">
+                      <div className="flex flex-col lg:w-[30%] md:flex-row lg:justify-start gap-4 mb-5 ml-3 md:ml-0 mt-5 md:mt-5 lg:mt-10">
+                        <Link
+                          to={`/movie/${movieDetails.id}/watch`}
+                          className="md:flex-1"
+                        >
+                          <h2 className="bg-[#2046a6] rounded-[10px] cursor-pointer px-7 py-2  md:py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100">
                             PLAY NOW
                           </h2>
                         </Link>
 
                         <Link
                           to={`https://www.youtube.com/watch?v=${trailer}`}
+                          className="md:flex-1"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           <h2
-                            className="bg-[#696b6e34] w-full md:w-fit rounded-[10px] cursor-pointer px-5 py-2 md:py-3 shadow-[0px_0px_5px_0px_rgba(255,_255,_255,_0.3)] font-normal uppercase"
+                            className="bg-[#b51010] rounded-[10px] cursor-pointer px-5 py-2 md:py-3 shadow-[0px_0px_5px_0px_rgba(255,_255,_255,_0.3)] font-normal uppercase"
                             onClick={() => {}}
                           >
                             Trailer
                           </h2>
                         </Link>
                       </div>
+                      {/* ----------------------------------------------- */}
+                      <div className="hidden lg:w-1/2 md:grid md:grid-cols-2 lg:grid-cols-4 mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] gap-2 items-center lg:ml-0 lg:justify-start">
+                        <div className="flex flex-2 justify-center items-center gap-1 text-[#ffca28] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
+                          {movieDetails.vote_average
+                            ? movieDetails.vote_average.toFixed(2)
+                            : null}
+                          <img
+                            src="/star.png"
+                            alt="star"
+                            className="w-[14px] md:w-[20px] h-full -mt-[3px]"
+                          />
+                        </div>
+                        <h2 className="flex-2 text-center krub-regular border border-[#2b417a69] bg-[#22233179]  py-2 rounded">
+                          {movieDetails.release_date
+                            ? movieDetails.release_date.substring(0, 4)
+                            : null}
+                        </h2>
+                        <div className="flex-1 text-nowrap text-center border border-[#2b417a69] bg-[#22233179] py-3 px-2 rounded font-bold md:text-[10pt] ">
+                          {movieCert}
+                        </div>
+                        <h2 className="flex-2 text-center border border-[#2b417a69] bg-[#22233179] py-2 rounded">
+                          {Math.trunc(movieDetails.runtime / 60).toString() +
+                            "h " +
+                            ((movieDetails.runtime / 60) % 1)
+                              .toString()
+                              .substring(2, 3) *
+                              6 +
+                            "m" +
+                            " "}
+                        </h2>
+                      </div>
+                      <div className="hidden md:flex flex-wrap justify-center lg:justify-start gap-2 krub-regular max-sm:text-[12px]/2.5 md:text-[13px] mt-3 ml-3 lg:ml-0">
+                        {movieDetails.genres
+                          ? movieDetails.genres.map((genre) => {
+                              return (
+                                <Link key={genre.id}>
+                                  <p className="bg-[#1b2028] border-[2px] border-[#4f75c157] py-2 px-3 mt-1 md:px-4 lg:px-5 rounded-[10px]">
+                                    {genre.name}
+                                  </p>
+                                </Link>
+                              );
+                            })
+                          : ""}
+                      </div>
                     </div>
                   </div>
                   {/* ---------------------------------------------------------------------------- */}
-                  <div className="mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] flex flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
+                  <div className="hidden max-md:flex mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
                     <div className="flex flex-2 justify-center items-center gap-1 text-[#ffca28] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
                       {movieDetails.vote_average
                         ? movieDetails.vote_average.toFixed(2)
@@ -158,7 +206,7 @@ function Movies(props) {
                     </h2>
                   </div>
 
-                  <div className="flex flex-wrap justify-center gap-2 krub-regular max-sm:text-[12px]/2.5 md:text-[13px] mt-3 ml-3 lg:ml-0">
+                  <div className="hidden max-md:flex flex-wrap justify-center gap-2 krub-regular max-sm:text-[12px]/2.5 md:text-[13px] mt-3 ml-3 lg:ml-0">
                     {movieDetails.genres
                       ? movieDetails.genres.map((genre) => {
                           return (
@@ -172,8 +220,8 @@ function Movies(props) {
                       : ""}
                   </div>
                   {/* ----------------------------------------------------------------------------------------------- */}
-                  <div className="flex flex-col lg:flex-row gap-10 -ml-2 -mr-2 border border-[#2b417a69] bg-[#0b112a79] mt-5 rounded-lg px-3 py-2">
-                    <div className="lg:flex-6">
+                  <div className="flex flex-col lg:flex-row gap-10 -ml-2 -mr-2 max-lg:border max-lg:border-[#2b417a69] max-lg:bg-[#0a0f22d1] mt-5 max-lg:rounded-lg px-3 py-2">
+                    <div className="lg:flex-6 lg:border lg:rounded-lg lg:border-[#2b417a69] lg:bg-[#0a0f22d1] lg:px-5 lg:py-3 lg:h-fit">
                       <h2 className="text-xl lg:text-2xl font-bold mb-4">
                         Synopsis
                       </h2>
