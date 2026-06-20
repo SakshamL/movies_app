@@ -87,12 +87,14 @@ function Movies(props) {
         <div className="text-white flex flex-col w-full">
           {/* <SearchBar /> */}
           <div className="relative -mt-0">
-            <img
-              src={IMGPATH + movieDetails.backdrop_path}
-              alt=""
-              className="rounded-xl md:w-[100vw] md:h-[70%] lg:h-[55%] backdrop-mask-gradient"
-              // className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
-            />
+            <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] md:h-[70%] lg:h-[55%] rounded-none md:rounded-none backdrop-mask-gradient">
+              <img
+                src={IMGPATH + movieDetails.backdrop_path}
+                alt=""
+                className="w-full object-cover object-top"
+              />
+            </div>
+
             <div className="flex justify-center">
               <div className="absolute top-[15%] w-[90%] brightness-[1]">
                 <div className="text-white md:ml-[10px] mt-35 md:mt-50">
