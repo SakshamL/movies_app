@@ -7,6 +7,11 @@ import SearchBar from "../Components/SearchBar";
 import { Link } from "react-router-dom";
 import CastCard from "../Components/CastCard";
 import AllMoviesPage from "./AllMoviesPage";
+import { Play } from "lucide-react";
+import { Film } from "lucide-react";
+import { Plus } from "lucide-react";
+import { Star } from "lucide-react";
+import { Circle } from "lucide-react";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
@@ -85,7 +90,7 @@ function Movies(props) {
             <img
               src={IMGPATH + movieDetails.backdrop_path}
               alt=""
-              className="rounded-xl md:w-[100vw] backdrop-mask-gradient"
+              className="rounded-xl md:w-[100vw] md:h-[70%] lg:h-[55%] backdrop-mask-gradient"
               // className="-mt-[100px] md:h-[80vh] md:w-[100vw] backdrop-mask-gradient "
             />
             <div className="flex justify-center">
@@ -100,18 +105,19 @@ function Movies(props) {
                       />
                     </div>
                     <div className="flex-5">
-                      <h2 className="ml-3 lg:ml-0 text-[104%] lg:text-start font-bold mb-3 md:text-4xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
+                      <h2 className="ml-3 md:ml-0 lg:ml-0 text-[104%] lg:text-start font-bold mb-3 md:text-4xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
                         {movieDetails.title}
                       </h2>
 
-                      <div className="flex flex-col lg:w-[30%] md:flex-row lg:justify-start gap-4 mb-5 ml-3 md:ml-0 mt-5 md:mt-5 lg:mt-10">
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:w-[42%] lg:justify-start max-sm:gap-3 sm:gap-4 mb-5 ml-3 md:ml-0 mt-4 md:mt-5 lg:mt-10">
                         <Link
                           to={`/movie/${movieDetails.id}/watch`}
                           className="md:flex-1"
                         >
-                          <h2 className="bg-[#2046a6] rounded-[10px] cursor-pointer px-7 py-2  md:py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100">
+                          <div className="flex items-center gap-3 bg-[#2046a6] rounded-[10px] cursor-pointer px-4 py-2 text-[#f5f5f5] md:py-3 shadow-[0px_0px_5px_0px_rgba(40,_90,_216,_1)] uppercase font-bold hover:scale-[1.1] duration-100">
+                            <Play />
                             PLAY NOW
-                          </h2>
+                          </div>
                         </Link>
 
                         <Link
@@ -120,14 +126,23 @@ function Movies(props) {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <h2
-                            className="bg-[#b51010] rounded-[10px] cursor-pointer px-5 py-2 md:py-3 shadow-[0px_0px_5px_0px_rgba(255,_255,_255,_0.3)] font-normal uppercase"
+                          <div
+                            className="flex gap-3 item-center bg-[#b51010] rounded-[10px] cursor-pointer px-5 py-2 md:py-3 shadow-[0px_0px_5px_0px_rgba(255,_255,_255,_0.3)] font-normal uppercase"
                             onClick={() => {}}
                           >
+                            <Film />
                             Trailer
-                          </h2>
+                          </div>
                         </Link>
+                        <div
+                          className="flex gap-3 items-center md:col-span-2 lg:col-span-1 lg:w-fit bg-[#0a0f22d1] rounded-[10px] cursor-pointer px-5 py-2 md:py-3 shadow-[0px_0px_5px_0px_rgba(255,_255,_255,_0.3)] font-normal max-lg:text-sm uppercase"
+                          onClick={() => {}}
+                        >
+                          <Plus />
+                          Watchlist
+                        </div>
                       </div>
+
                       {/* ----------------------------------------------- */}
                       <div className="hidden lg:w-1/2 md:grid md:grid-cols-2 lg:grid-cols-4 mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] gap-2 items-center lg:ml-0 lg:justify-start">
                         <div className="flex flex-2 justify-center items-center gap-1 text-[#ffca28] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
@@ -175,26 +190,44 @@ function Movies(props) {
                     </div>
                   </div>
                   {/* ---------------------------------------------------------------------------- */}
-                  <div className="hidden max-md:flex mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
-                    <div className="flex flex-2 justify-center items-center gap-1 text-[#ffca28] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
+                  <div className="hidden max-md:flex justify-center mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[16px] md:text-[18px] flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
+                    <div className="flex items-center gap-1 text-[16px]">
+                      <Star size={16} color="yellow" />
                       {movieDetails.vote_average
                         ? movieDetails.vote_average.toFixed(2)
                         : null}
-                      <img
+
+                      {/* <img
                         src="/star.png"
                         alt="star"
                         className="w-[14px] md:w-[20px] h-full -mt-[3px]"
-                      />
+                      /> */}
                     </div>
-                    <h2 className="flex-2 text-center krub-regular border border-[#2b417a69] bg-[#22233179]  py-2 rounded">
+                    <div className="relative flex items-center justify-center mx-1">
+                      <Circle className="absolute h-2.5 w-2.5 fill-yellow-600 text-yellow-600 opacity-70 blur-[2px]" />
+                      <Circle className="relative h-2 w-2 fill-yellow-100 text-yellow-100 opacity-90" />
+                    </div>
+                    <h2>
                       {movieDetails.release_date
                         ? movieDetails.release_date.substring(0, 4)
                         : null}
                     </h2>
-                    <div className="flex-1 text-nowrap text-center border border-[#2b417a69] bg-[#22233179] py-2 px-2 rounded font-bold md:text-[10pt] ">
-                      {movieCert}
+                    <div className="relative flex items-center justify-center mx-1">
+                      <Circle className="absolute h-2.5 w-2.5 fill-yellow-600 text-yellow-600 opacity-70 blur-[2px]" />
+                      <Circle className="relative h-2 w-2 fill-yellow-100 text-yellow-100 opacity-90" />
                     </div>
-                    <h2 className="flex-2 text-center border border-[#2b417a69] bg-[#22233179] py-2 rounded">
+                    <div className="text-xl flex items-center gap-2 text-[grey]">
+                      [{" "}
+                      <span className="text-[12px] text-white">
+                        {movieCert}
+                      </span>{" "}
+                      ]
+                    </div>
+                    <div className="relative flex items-center justify-center mx-1">
+                      <Circle className="absolute h-2.5 w-2.5 fill-yellow-600 text-yellow-600 opacity-70 blur-[2px]" />
+                      <Circle className="relative h-2 w-2 fill-yellow-100 text-yellow-100 opacity-90" />
+                    </div>
+                    <h2>
                       {Math.trunc(movieDetails.runtime / 60).toString() +
                         "h " +
                         ((movieDetails.runtime / 60) % 1)
@@ -261,7 +294,7 @@ function Movies(props) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex-2 -mt-30 hidden lg:block">
+                    <div className="flex-2 -mt-60 hidden lg:block">
                       <img
                         src={IMGPATH + movieDetails.poster_path}
                         alt={movieDetails.title}
