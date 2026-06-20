@@ -86,7 +86,7 @@ function Movies(props) {
         <title>{movieDetails.title + " - WatchAll"}</title>
         <div className="text-white flex flex-col w-full">
           {/* <SearchBar /> */}
-          <div className="relative -mt-0">
+          <div className="relative -mt-6">
             <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] md:h-[70%] lg:h-[55%] rounded-none md:rounded-none backdrop-mask-gradient">
               <img
                 src={IMGPATH + movieDetails.backdrop_path}
