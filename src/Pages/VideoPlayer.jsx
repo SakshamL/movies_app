@@ -32,13 +32,20 @@ const VideoPlayer = () => {
           src={`https://vidfast.pro/movie/${id}?autoPlay=false&server=Bollywood`}
           allowFullscreen="true"
         ></iframe> */}
-        <iframe
+        {/* <iframe
           width="100%"
           height="100%"
           src={`https://vidcore.net/movie/${id}`}
           allowFullscreen="true"
+        ></iframe> */}
+
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.viduki.net/1/movie/${id}?color=e01621`}
+          allowFullscreen="true"
         ></iframe>
-        https://vidup.to/movie/
+        {/* https://vidup.to/movie/ */}
         {/* <iframe
           width="100%"
           height="100%"
@@ -51,7 +58,12 @@ const VideoPlayer = () => {
           height="100%"
           src={`https://www.vidking.net/embed/movie/${id}?color=ff0000&autoPlay=true`}
           allowFullscreen="true"
-          
+        ></iframe> */}
+        {/* <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.vidking.net/embed/movie/${id}?color=ff0000&autoPlay=true`}
+          allowFullscreen="true"
         ></iframe> */}
       </div>
     </>

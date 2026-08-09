@@ -91,7 +91,7 @@ function Movies(props) {
               <img
                 src={IMGPATH + movieDetails.backdrop_path}
                 alt=""
-                className="w-full object-cover object-top"
+                className="w-full "
               />
             </div>
 
@@ -107,7 +107,7 @@ function Movies(props) {
                       />
                     </div>
                     <div className="flex-5">
-                      <h2 className="ml-3 md:ml-0 lg:ml-0 text-[104%] lg:text-start font-bold mb-3 md:text-4xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
+                      <h2 className="ml-3 md:ml-0 lg:ml-0 text-[110%] lg:text-start font-bold mb-3 md:text-4xl md:font-bold md:mb-4 [text-shadow:_0px_0px_5px_#000000]">
                         {movieDetails.title}
                       </h2>
 
@@ -147,15 +147,18 @@ function Movies(props) {
 
                       {/* ----------------------------------------------- */}
                       <div className="hidden lg:w-1/2 md:grid md:grid-cols-2 lg:grid-cols-4 mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[14px] md:text-[18px] gap-2 items-center lg:ml-0 lg:justify-start">
-                        <div className="flex flex-2 justify-center items-center gap-1 text-[#ffca28] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
-                          {movieDetails.vote_average
-                            ? movieDetails.vote_average.toFixed(2)
-                            : null}
-                          <img
+                        <div className="flex flex-2 justify-center items-center gap-2 text-[#f5f5f5] font-bold border border-[#2b417a69] py-2 rounded bg-[#22233179]">
+                          <h2 className="text-[20px]">
+                            {movieDetails.vote_average
+                              ? movieDetails.vote_average.toFixed(2)
+                              : null}
+                          </h2>
+                          {/* <img
                             src="/star.png"
                             alt="star"
                             className="w-[14px] md:w-[20px] h-full -mt-[3px]"
-                          />
+                          /> */}
+                          <Star size={20} color="yellow" />
                         </div>
                         <h2 className="flex-2 text-center krub-regular border border-[#2b417a69] bg-[#22233179]  py-2 rounded">
                           {movieDetails.release_date
@@ -192,7 +195,7 @@ function Movies(props) {
                     </div>
                   </div>
                   {/* ---------------------------------------------------------------------------- */}
-                  <div className="hidden max-md:flex justify-center mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[16px] md:text-[18px] flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
+                  <div className="hidden max-md:flex justify-evenly mt-5 mb-5 -ml-2 -mr-3 krub-regular text-[16px] md:text-[18px] flex-nowrap gap-1.5 items-center lg:ml-0 lg:justify-start">
                     <div className="flex items-center gap-1 text-[16px]">
                       <Star size={16} color="yellow" />
                       {movieDetails.vote_average
